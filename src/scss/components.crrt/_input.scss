@@ -1,0 +1,27 @@
+ @import "../components.b/controls/input";
+
+ .input {
+  font-size: 1.4rem;
+  --bg: #FBFBFB;
+  --fg: #4f4f4f;
+
+  --padding-inline: 0.95em;
+  --padding-block: 1.85em;
+  --padding: var(--padding-block) var(--padding-inline);
+  --border-color: var(--bg);
+  --border-width: 0.1rem;
+  --border-radius: 1.36em;
+  
+  --fz: 1em;
+  --fw: 300;
+  --lh: initial;
+
+  --border-focus: var(--c-secondary);
+
+  --error-color: #FF3B30;
+  --error-fz: 1rem;
+ }
+
+ .input__error {
+  // display: none;
+ }

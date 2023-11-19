@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+  <head>
+      @@include('tpls/b/meta-head.html',{
+        "title": "Skillhouse",
+        "desc": "",
+        "themeColor": "#1A1A1A",
+      })
+      <link rel="stylesheet" href="./css/style.css">
+  </head>
+  
+  <body class="page-home">
+
+    <div class="wrapper">
+      @@include('tpls/sections.crrt/header.html',{})
+
+      <main class="main">
+
+        <section class="hero section">
+          <div class="hero__container container">
+            <div class="hero__offer">
+              <h2 class="section-title hero__title">
+                Прокат автомобилей на&nbsp;Мадейре 
+                <strong>от 40€ в сутки</strong>
+              </h2>
+              <div class="bookform hero__bookform">
+                  @@include('./tpls/input/select.html', {})
+                  @@include('./tpls/input/select.html', {})
+                  @@include('./tpls/input/datepicker.html', {placeholder: 'Когда'})
+                  @@include('./tpls/input/datepicker.html', {placeholder: 'Когда'})
+                  <button class="button-primary hero__bookform-submit">Подобрать автомобиль</button>
+              </div>
+            </div>
+            <div class="hero-gallery">
+              <div class="swiper hero-gallery__swiper">
+                <div class="swiper-wrapper">
+                  @@for (var i = 0; i < 8; i++) {
+                  <div class="swiper-slide hero-gallery__slide">
+                    <div class="hero__media">
+                      <picture class="hero__media-pic">
+                          <img src="./img/hero.crrt/hero-gallery.jpg" alt="" class="hero__media-img">
+                      </picture>
+                      <div class="hero__meida-caption">
+                        <div class="wysiwyg">
+                          <p>Посмотретие лучшие <br>маршруты на Мадейре</p>
+                        </div>
+                        <a href="#" class="hero__media-caption-link link">Смотреть маршруты</a>
+                      </div>
+                    </div>
+                  </div>
+                  }
+                </div>
+              </div>
+              <div class="b_swiper__buttons hero-gallery__buttons">
+                <div class="swiper-button-prev hero-gallery__button-prev"></div>
+                <div class="swiper-button-next hero-gallery__button-next"></div>
+              </div>
+            </div>
+            <div class="hero__bullets">
+              <div class="bullet-card">
+                <div class="bullet-card__media">
+                  <picture class="bullet-card__pic">
+                    <img class="bullet-card__img" src="./img/common.crrt/icon-time.svg" alt="">
+                  </picture>
+                </div>
+                <div class="bullet-card__content wysiwyg">
+                  <h3>Консультация 24\7</h3>
+                  <p>По лучшим маршрутам и техническим вопросам </p>
+                </div>
+              </div>
+              <div class="bullet-card">
+                <div class="bullet-card__media">
+                  <picture class="bullet-card__pic">
+                    <img class="bullet-card__img" src="./img/common.crrt/icon-car.svg" alt="">
+                  </picture>
+                </div>
+                <div class="bullet-card__content wysiwyg">
+                  <h3>Возможность</h3>
+                  <p>Продлить аренду автомобиля на неограниченный срок</p>
+                </div>
+              </div>
+              <div class="bullet-card">
+                <div class="bullet-card__media">
+                  <picture class="bullet-card__pic">
+                    <img class="bullet-card__img" src="./img/common.crrt/icon-protect.svg" alt="">
+                  </picture>
+                </div>
+                <div class="bullet-card__content wysiwyg">
+                  <h3>В цену включена</h3>
+                  <p>Страховка, полный бак, карта Мадейры и налог </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="car-shelf section">
+          <div class="car-shelf__container container">
+            <h2 class="section-title car-shelf__title">
+              Выберите свой автомобиль 
+            </h2>
+            <div class="car-shelf__content">
+              @@include('tpls/components.crrt/car-card.html',{})
+              @@include('tpls/components.crrt/car-card.html',{})
+              @@include('tpls/components.crrt/car-card.html',{})
+              @@include('tpls/components.crrt/car-card.html',{})
+              @@include('tpls/components.crrt/car-card.html',{})
+              @@include('tpls/components.crrt/car-card.html',{})
+            </div>
+          </div>
+        </section>
+
+
+        <section class="section reviews">
+          <div class="container reviews__container">
+            <h2 class="section-title section-text--center reviews__title">Отзывы</h2>
+            <div class="reviews__gallery">
+              <div class="swiper reviews-carousel">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide reviews-slide">
+                    <article class="reviews-card">
+                      <div class="reviews-card__user">
+                        <picture class="reviews-card__user-pic">
+                          <source data-srcset="./img/reviews/review-photo.webp" type="image/webp">
+                          <img src="./img/reviews/review-photo.png" alt="" class="reviews-card__user-img">
+                        </picture>
+                        <h3 class="reviews-card__user-name">Алина Жиркова</h3>
+                      </div>
+                      <div class="reviews-card__user-links">
+                        <a href="#" class="reviews-card__user-link">Контакт</a>
+                      </div>
+                      <p class="reviews-card__feedback">
+                        Спасибо большое Юрию за консультацию. За час узнала куда сливается 40 тысяч из рекламного бюджета, поувольняла пол штата и наконец-то начала выходить в нормальный плюс по выручке!
+                        <br><br>
+                        Всем советую, быстро, чётко и по делу))
+                      </p>
+                    </article>
+                  </div>
+                  <div class="swiper-slide reviews-slide">
+                    <article class="reviews-card reviews-card-video">
+                      <div class="reviews-card__media">
+                        <picture class="reviews-card__pic">
+                          <source data-srcset="./img/reviews/reviews-video.webp" type="image/webp">
+                          <img src="./img/reviews/reviews-video.jpg" alt="" class="reviews-card__img">
+                        </picture>
+                        <iframe src="" frameborder="0" class="reviews-card__video"></iframe>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="swiper-slide reviews-slide">
+                    <article class="reviews-card">
+                      <div class="reviews-card__user">
+                        <picture class="reviews-card__user-pic">
+                          <source data-srcset="./img/reviews/review-photo.webp" type="image/webp">
+                          <img src="./img/reviews/review-photo.png" alt="" class="reviews-card__user-img">
+                        </picture>
+                        <h3 class="reviews-card__user-name">Алина Жиркова</h3>
+                      </div>
+                      <div class="reviews-card__user-links">
+                        <a href="#" class="reviews-card__user-link">Контакт</a>
+                      </div>
+                      <p class="reviews-card__feedback">
+                        Спасибо большое Юрию за консультацию. За час узнала куда сливается 40 тысяч из рекламного бюджета, поувольняла пол штата и наконец-то начала выходить в нормальный плюс по выручке!
+                        <br><br>
+                        Всем советую, быстро, чётко и по делу))
+                      </p>
+                    </article>
+                  </div>
+                  <div class="swiper-slide reviews-slide">
+                    <article class="reviews-card reviews-card-video">
+                      <div class="reviews-card__media">
+                        <picture class="reviews-card__pic">
+                          <source data-srcset="./img/reviews/reviews-video.webp" type="image/webp">
+                          <img src="./img/reviews/reviews-video.jpg" alt="" class="reviews-card__img">
+                        </picture>
+                        <iframe src="" frameborder="0" class="reviews-card__video"></iframe>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              
+                <div class="swiper-pagination reviews-pagination"></div>
+              
+                <div class="swiper-buttons reviews-buttons">
+                  <div class="swiper-button-prev reviews-button-prev"></div>
+                  <div class="swiper-button-next reviews-button-next"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        @@include('tpls/sections.mdn/blog.html',{})
+
+        @@include('tpls/sections.mdn/faq.html',{})
+
+      </main>
+
+      @@include('tpls/sections.crrt/footer.html',{})
+    </div>
+
+    @@include('tpls/modals.html', {})
+
+    <script src="./js/index.min.js"></script>
+  </body>
+</html>

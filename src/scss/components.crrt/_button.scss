@@ -1,0 +1,39 @@
+ @import "../components.b/controls/button";
+
+.button-primary,
+.button-secondary {
+  --ff: var(--ff-regular);
+  --fz: 1.4rem;
+  --fw: 400;
+  --lh: 1;
+  --ls: initial;
+
+  --padding-block: 2em;
+  --padding-inline: 2em;
+
+  min-width: 24rem;
+
+  @media (max-width: $tablet) {
+    --fz: 1rem;
+    min-width: 15rem;
+  }
+}
+
+.button-primary {
+  --fg: var(--fg-on);
+  --bg: var(--gradient-primary);
+
+  --border-width: 0;
+  --border-color: transparent;
+  --border-radius: 1em;
+  text-transform: uppercase;
+  box-shadow: 0px 0.35556em 0px 0px #CF5C59, 0px 0.235656em 0.424795em 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.button-primary:hover {
+  @media (any-hover:hover) {
+    box-shadow: 0px 0px 0px 0px #CF5C59, 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset;
+    transform: translateY(0.36em);
+  }
+}
+

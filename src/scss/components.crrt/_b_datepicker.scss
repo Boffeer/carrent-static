@@ -1,0 +1,17 @@
+.b_datepicker {
+	position: relative;
+}
+.b_datepicker::after {
+	content: "";
+	position: absolute;
+	top: 1.8em;
+	right: 1.4em;
+	display: block;
+	width: 1.4em;
+	height: 1.4em;
+	background-image: url('../img/common.crrt/icon-calendar.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+

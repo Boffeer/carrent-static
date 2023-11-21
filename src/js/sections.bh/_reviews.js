@@ -1,20 +1,23 @@
 "use strict"
 
-import Swiper, { Navigation, Autoplay, Pagination, Thumbs, EffectFade, Grid } from "swiper";
+import Swiper, { Navigation, Autoplay, Pagination, Scrollbar, Thumbs, EffectFade, Grid } from "swiper";
 
-let reviews = new Swiper(".reviews-carousel", {
-  modules: [Navigation, Pagination, EffectFade],
-  pagination: {
-    el: ".reviews-pagination",
-    clickable: true,
-  },
+let reviews = new Swiper(".reviews-carousel__swiper", {
+  modules: [Navigation, Pagination, EffectFade, Scrollbar],
+  // pagination: {
+  //   el: ".reviews-pagination",
+  //   clickable: true,
+  // },
   // effect: 'fade',
   //   fadeEffect: {
   //   crossFade: true
   // },
   navigation: {
-    nextEl: ".reviews-button-next",
-    prevEl: ".reviews-button-prev",
+    nextEl: ".reviews-carousel__button-next",
+    prevEl: ".reviews-carousel__button-prev",
+  },
+  scrollbar: {
+      el: ".reviews-carousel__scrollbar",
   },
   slidesPerView: 1.1,
   spaceBetween: 15,

@@ -1,5 +1,5 @@
 .b_video {
-	--play-button-icon: ;
+	// --play-icon: url('../img/sklh_common/play.svg');
 	position: relative;
 	overflow: hidden;
 
@@ -99,7 +99,7 @@
 	min-width: var(--size);
 	width: var(--size);
 	height: var(--size);
-	background-image: url('../img/sklh_common/play.svg');
+	background-image: var(--play-icon);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;

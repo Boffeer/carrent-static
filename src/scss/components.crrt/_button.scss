@@ -37,3 +37,29 @@
   }
 }
 
+
+.button-secondary {
+  /*
+  --ff: var(--ff-regular);
+  --fz: 2rem;
+  --fw: 500;
+  --lh: initial;
+
+  --padding-block: 1.25em;
+  --padding-inline: 1.5em;
+
+  --fg: var(--c-primary);
+  --bg: var(--bg-app);
+
+  --border-width: 0.1rem;
+  --border-color: var(--c-primary);
+  --border-radius: 9999px;
+  */
+  --fg: var(--c-secondary);
+  --bg: transparent;
+
+  --border-width: 0.1em;
+  --border-color: var(--c-secondary);
+  --border-radius: 1em;
+  text-transform: uppercase;
+}

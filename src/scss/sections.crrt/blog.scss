@@ -1,13 +1,4 @@
 .blog {
-	padding-top: 3rem;
-}
-
-.help + .blog {
-	padding-top: 10rem;
-
-	@media (max-width: $mobile-xlg) {
-		padding-top: 5rem;
-	}
 }
 
 .blog__gallery {

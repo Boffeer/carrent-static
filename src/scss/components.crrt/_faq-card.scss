@@ -1,7 +1,8 @@
 .faq-card {
-	border: 1px solid var(--border-color);
-	border-radius: 1rem;
-	margin-bottom: 2.1rem;
+	font-size: 1em;
+	border: 0.1em solid var(--border-color);
+	border-radius: 1em;
+	margin-bottom: 2.1em;
 	font-family: var(--ff-title);
 
   --joggler-line-width: 100%;
@@ -25,7 +26,7 @@
 
 .faq-card__title {
 	font-weight: 400;
-	font-size: 1.8rem;
+	font-size: 1.8em;
 	line-height: 140%;
 	color: var(--fg-card-title);
 	transition: var(--tr-regular);
@@ -41,7 +42,7 @@
 
 .bayan--opened .faq-card__title {
 	font-weight: 700;
-	color: var(--c-primary);
+	color: var(--c-secondary);
 }
 
 .faq-card__question {
@@ -87,11 +88,6 @@
 	}
 }
 
-.faq-card__desc {
-	@media (max-width: $mobile-lg) {
-		font-size: 1.4rem;
-	}
-}
 
 .bayan--opened .faq-card__answer {
 	@media (min-width: $mobile-lg + 1) {

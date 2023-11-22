@@ -3052,6 +3052,25 @@ body._lock {
   width: 100%;
 }
 
+.slider-container {
+  width: 300px;
+  position: relative;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .button-primary,
 .button-secondary {
   --padding: var(--padding-block) var(--padding-inline);

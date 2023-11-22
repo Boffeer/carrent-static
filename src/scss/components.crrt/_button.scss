@@ -14,8 +14,11 @@
   min-width: 24rem;
 
   @media (max-width: $tablet) {
-    --fz: 1rem;
+    --ls: 0.06em;
+    --fz: 1.2rem;
     min-width: 15rem;
+    border-radius: 1.16em;
+  --padding-block: 1.5em;
   }
 }
 
@@ -28,6 +31,10 @@
   --border-radius: 1em;
   text-transform: uppercase;
   box-shadow: 0px 0.35556em 0px 0px #CF5C59, 0px 0.235656em 0.424795em 0px rgba(255, 255, 255, 0.25) inset;
+
+  @media (max-width: $tablet) {
+    box-shadow: 0px 0.27556em 0px 0px #CF5C59, 0px 0.235656em 0.424795em 0px rgba(255, 255, 255, 0.25) inset;
+  }
 }
 
 .button-primary:hover {

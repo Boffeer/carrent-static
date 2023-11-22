@@ -113,6 +113,7 @@
 }
 
 .select__option {
+    width: 100%;
     position: relative;
     padding-left: 2rem;
     color: var(--fg);
@@ -121,10 +122,6 @@
     font-size: var(--fz);
     line-height: var(--lh);
     text-align: left;
-
-    @media (max-width: $tablet-xlg) {
-      padding-left: 3rem;
-    }
 }
 .select__option:focus {
   color: var(--c-selected);

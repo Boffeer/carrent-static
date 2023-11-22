@@ -7,7 +7,7 @@
 	background: var(--bg-card);
 	box-shadow: 0px 1.4rem 4.4rem 0px rgba(197, 197, 197, 0.25);
 
-	@media (max-width: $mobile) {
+	@media (max-width: $tablet) {
 		border-radius: 1.62rem;
     --p-top: 1.6rem;
     --p-inline: 1.9rem;
@@ -40,7 +40,7 @@
   margin-left: #{'calc(0px - var(--p-inline))'};
   margin-right: #{'calc(0px - var(--p-inline))'};
 
-	@media (max-width: $mobile) {
+	@media (max-width: $tablet) {
 		//height: 15rem;
 		margin-bottom: 1rem;
 	}
@@ -78,9 +78,10 @@
 	margin-bottom: 0.6rem;
 	position: relative;
 
-	@media (max-width: $mobile) {
-		font-size: 1.6rem;
+	@media (max-width: $tablet) {
+		font-size: 1.4rem;
 		margin-bottom: 0.5rem;
+		line-height: initial;
 	}
 }
 
@@ -93,7 +94,7 @@
 	line-height: 125%;
 	margin-bottom: 1.5rem;
 
-	@media (max-width: $mobile) {
+	@media (max-width: $tablet) {
 		font-size: 1.4rem;
 		margin-bottom: 0.8rem;
 	}
@@ -109,7 +110,7 @@
 	justify-content: flex-start;
 	font-weight: 700;
 
-	@media (max-width: $mobile) {
+	@media (max-width: $tablet) {
 		font-size: 1.4rem;
 	}
 }

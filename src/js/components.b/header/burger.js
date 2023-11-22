@@ -38,6 +38,8 @@ export function openBurger() {
 
   if (OPENED_BURGER_LOCKS_SCROLL) {
     bodyLock(true);
+  } else {
+    bodyLock(true);
   }
   const stickyHeader = document.querySelector('.page-heading--sticky-run');
 
@@ -55,8 +57,8 @@ export function closeBurger() {
 }
 window.closeBurger = closeBurger
 
-burger.b_close = closeBurger;
-burger.b_open = openBurger;
+// burger.b_close = closeBurger;
+// burger.b_open = openBurger;
 
 if (header && burger) {
   burger.addEventListener("click", () => {

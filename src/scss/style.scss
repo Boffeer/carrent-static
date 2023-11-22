@@ -57,7 +57,10 @@ html {
   }
 
   @media (max-width: $mobile-xxs) {
-    --fz-modifier: 2.777777; // 360
+    --fz-modifier: 2.777777;
+  }
+  @media (max-width: $mobile-xxs) {
+    --fz-modifier: 3.125; // min 320
   }
   background-color: var(--bg-app);
 }

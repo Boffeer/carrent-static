@@ -19,10 +19,11 @@ let reviews = new Swiper(".reviews-carousel__swiper", {
   scrollbar: {
       el: ".reviews-carousel__scrollbar",
   },
-  slidesPerView: 1.1,
-  spaceBetween: 15,
+  slidesPerView: 1,
+  // slidesPerView: 1.1,
+  spaceBetween: 20,
   breakpoints: {
-    993: {
+    992: {
       slidesPerView: 2,
       spaceBetween: 30,
     }

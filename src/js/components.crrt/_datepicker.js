@@ -28,47 +28,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			language: pickerLang,
 			locale: locales[pickerLang],
 			minDate: today,
-			// inputs: [
-			// 	rangepicker.querySelector('.calendar-1'),
-			// 	rangepicker.querySelector('.calendar-2')
-			// ]
 		}
 
-		if (rangepicker.classList.contains('b_datepicker--calendar')) {
-			// rangepickerConfig.inputs = [
-			// 	rangepicker.querySelector('.calendar-1'),
-			// 	rangepicker.querySelector('.calendar-2')
-			// ]
-		}
+		const isMobile = () => (window.innerWidth <= window.media.tablet)
 
 		const vanillaRangepicker = new DateRangePicker(rangepicker, rangepickerConfig)
 
 		const datePickerFrom = vanillaRangepicker.inputs[0] 
 
 		datePickerFrom.addEventListener('show', () => {
+			if (isMobile()) return
 			vanillaRangepicker.datepickers[1].show();
 		})
 		datePickerFrom.addEventListener('changeDate', () => {
 			setTimeout(() => {
+				if (isMobile()) {
+					vanillaRangepicker.datepickers[0].hide();
+				}
 				vanillaRangepicker.datepickers[1].show();
 			})
 		})
 		datePickerFrom.addEventListener('changeYear', () => {
+			if (window.innerWidth <= window.media.tablet) return
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[1].show();
 			})
 		})
 		datePickerFrom.addEventListener('changeView', () => {
+			if (window.innerWidth <= window.media.tablet) return
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[1].show();
 			})
 		})
 		datePickerFrom.addEventListener('changeMonth', () => {
+			if (window.innerWidth <= window.media.tablet) return
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[1].show();
 			})
 		})
 		datePickerFrom.addEventListener('changeDate', () => {
+			if (window.innerWidth <= window.media.tablet) return
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[1].show();
 			})
@@ -76,14 +75,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 		const datePickerTo = vanillaRangepicker.inputs[1]
 		datePickerTo.addEventListener('show', (e) => {
+			console.log(window.innerWidth< window.media.tablet)
+			if (window.innerWidth <= window.media.tablet) return
 			vanillaRangepicker.datepickers[0].show()
 		})
 		datePickerTo.addEventListener('changeYear', () => {
+			if (window.innerWidth <= window.media.tablet) return
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[0].show();
 			})
 		})
 		datePickerTo.addEventListener('changeView', () => {
+			if (window.innerWidth <= window.media.tablet) return
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[0].show();
 			})

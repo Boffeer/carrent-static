@@ -1,3 +1,5 @@
+@import "../components.b/lego/burger.scss";
+
 .header {
 	--tr-jolly-enter: cubic-bezier(0.5, 0, 0.5, 1);
 	top: 0;
@@ -13,6 +15,11 @@
 	background: var(--bg-section-light);
   padding-top: 1.2em;
   padding-bottom: 1.2em;
+
+  @media (max-width: $mobile) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 
@@ -33,10 +40,27 @@ body:not(._lock) .header--hidden {
   justify-content: flex-start;
   align-items: center;
 
+  @media (max-width: $tablet) {
+    justify-content: space-between;
+    position: relative;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+  }
   @media (max-width: $mobile) {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
     background-color: inherit;
+  }
+}
+
+.header__container::after {
+  @media (max-width: $tablet) {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-card);
+    z-index: 2;
   }
 }
 
@@ -44,9 +68,15 @@ body:not(._lock) .header--hidden {
   margin-right: 8rem;
   font-size: 2rem;
   font-weight: 700;
+  position: relative;
+  z-index: 3;
 
-  @media (max-width: $laptop-md) {
+  @media (max-width: $tablet) {
     margin-right: 3rem;
+  }
+
+  @media (max-width: $mobile) {
+    margin-right: 2rem;
   }
 }
 
@@ -57,6 +87,7 @@ body:not(._lock) .header--hidden {
   justify-content: flex-start;
   transition: all 0.5s var(--tr-jolly-enter);
 
+/*
   @media (max-width: $mobile) {
     margin-left: #{'calc(0px - var(--p-container))'};
     margin-right: #{'calc(0px - var(--p-container))'};
@@ -66,6 +97,7 @@ body:not(._lock) .header--hidden {
     -webkit-mask-image: var(--mask);
     mask: var(--mask);
   }
+  */
   /*
   @media (max-width: $w-burger) {
     position: fixed;
@@ -94,39 +126,77 @@ body:not(._lock) .header--hidden {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
+  z-index: 3;
 }
 
 .header__contacts-phone {
+  font-size: 1.5em;
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 3.1em;
+  margin-right: 2.05em;
+
+  @media (max-width: $mobile) {
+    margin-right: 0;
+    font-size: 1.25em;
+  }
 }
 
 .header__contacts-icon {
   display: block;
-  --size: 2em;
+  --size: 1.33em;
   width: var(--size);
   min-width: var(--size);
   max-width: var(--size);
   height: var(--size);
   min-height: var(--size);
   max-height: var(--size);
-  margin-right: 0.9em;
+  margin-right: 0.6em;
 }
 
 .header__contacts-label {
   display: block;
-  font-size: 1.1em;
-  margin-bottom: 0.1em;
+  font-size: 0.73em;
+  margin-bottom: 0.2em;
   line-height: initial;
   color: var(--fg-caption);
 }
 
 .header__contacts-text {
   display: block;
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 900;
   color: var(--fg-second);
+}
+
+
+.header__socials {
+  z-index: 3;
+  @media (max-width: $mobile) {
+    // display: none;
+    position: fixed;
+  bottom: -100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    justify-content: center;
+    // transform: translateY(100%);
+    pointer-events: none;
+    transition: all 0.4s var(--tr-jolly-enter);
+  }
+}
+
+.header--burger-opened .header__socials {
+    bottom: 5em;
+    transition: all 0.4s var(--tr-jolly-enter) 0.1s;
+  // transform: translateY(0)
+}
+
+.header__burger {
+  --line-width: 63.5%;
+  --line-height: 0.2em;
+  --line-offset: 0.7rem;
+  --c-burger-line: var(--c-secondary);
 }

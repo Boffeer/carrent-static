@@ -22,4 +22,10 @@
   --list-padding: 2.6em 1.3em;
   --list-bg: #F4F5F6;
   --list-selected: var(--c-secondary);
+
+  @media (max-width: $tablet) {
+    --fz: 1.3em;
+    --padding: 1.3em 1em;
+    --angle-top: 1.7em;
+  }
 }

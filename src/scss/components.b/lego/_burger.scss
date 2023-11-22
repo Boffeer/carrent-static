@@ -17,6 +17,7 @@
   transition: var(--tr);
   margin-left: 3rem;
   cursor: pointer;
+  z-index: 3;
 
   @media (min-width: $has-burger + 1) {
     display: none;

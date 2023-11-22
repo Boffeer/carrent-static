@@ -9,29 +9,25 @@
 	align-items: start;
 	gap: 3rem;
 
-	@media (max-width: $tablet-xlg) {
-		grid-template-columns: 1fr 1fr;
-	}
-
-	@media (max-width: $mobile-xlg) {
+	@media (max-width: $tablet) {
 		grid-template-columns: 100%;
 	}
 }
 
 
 .faq-help {
-	// border: 1px solid var(--border-color);
-	// border-radius: 1rem;
-	// padding: 3.1rem;
 	// padding-bottom: 7.3rem;
 	// background-color: var(--bg-card);
 	font-family: var(--ff-title);
 	position: sticky;
 	top: 2rem;
 
-	@media (max-width: $mobile-lg) {
+	@media (max-width: $tablet) {
 		padding: 1.5rem;
 		padding-bottom: 2rem;
+
+		border: 1px solid var(--border-color);
+		border-radius: 1rem;
 	}
 }
 
@@ -42,12 +38,11 @@
 	margin-bottom: 2.2em;
 	background-color: var(--c-primary);
 
-	@media (max-width: $mobile-xlg) {
-		height: 51rem;
-	}
-	@media (max-width: $mobile-lg) {
-		height: 24rem;
+	@media (max-width: $tablet) {
+		height: 34rem;
 		margin-bottom: 1.5rem;
+	}
+	@media (max-width: $mobile) {
 	}
 }
 
@@ -70,9 +65,9 @@
 	line-height: 108.54%;
 	margin-bottom: 1.5rem;
 
-	@media (max-width: $mobile-lg) {
-		font-size: 2rem;
-		margin-bottom: 1rem;
+	@media (max-width: $tablet) {
+		font-size: 1.8em;
+		margin-bottom: 0.44em;
 	}
 }
 
@@ -82,13 +77,9 @@
 	line-height: 140%;
 	margin-bottom: 3.8rem;
 
-	@media (max-width: $tablet-xlg) {
-		font-size: 2rem;
-	}
-
-	@media (max-width: $mobile-lg) {
-		font-size: 1.5rem;
-		margin-bottom: 1.5rem;
+	@media (max-width: $tablet) {
+		font-size: 1.4em;
+		margin-bottom: 1.57em;
 	}
 }
 
@@ -96,6 +87,12 @@
 	--icon-color: var(--c-primary);
 	--link-padding: 1.4em;
 	--icon-gap: 2.3em;
+
+	@media (max-width: $tablet) {
+		--link-padding: 1.05em;
+		--icon-gap: 1.45em;
+		--icon-size: 1.7em;
+	}
 }
 .faq__socials .socials__link {
 	box-sizing: content-box;

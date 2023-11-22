@@ -13,6 +13,10 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+
+	@media (max-width: $tablet) {
+		top: 1.6em;
+	}
 }
 
 
@@ -61,6 +65,11 @@
 	margin-bottom: 2.7em;
 	align-items: center;
 	border-bottom: 0.1em solid #f4f4f4;
+
+	@media (min-width: $mobile + 1) and (max-width: $tablet) {
+		padding-bottom: 1.3em;
+		margin-bottom: 1.3em;
+	}
 }
 
 .datepicker-controls .button {
@@ -96,6 +105,10 @@
 
 .datepicker .days-of-week {
 	margin-bottom: 2.9em;
+
+	@media (min-width: $mobile + 1) and (max-width: $tablet) {
+		margin-bottom: 1.3em;
+	}
 }
 
 .datepicker .dow {
@@ -114,6 +127,10 @@
 	font-size: 1.8em;
     // opacity: 0.4;
     color: var(--fg);
+
+    @media (max-width: $tablet) {
+		height: 2.25em;
+    }
 }
 .datepicker-cell.range {
 	background-color: #dbf0ff;
@@ -165,6 +182,10 @@
 .b_rangepicker {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+
+	@media (max-width: $mobile) {
+		grid-template-columns: 100%;
+	}
 }
 
 .b_rangepicker .datepicker {

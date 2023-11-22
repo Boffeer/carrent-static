@@ -12,6 +12,7 @@
   z-index: 1;
   position: relative;
   margin-left: var(--p-container);
+  max-width: 98%;
 
 	@media (max-width: $tablet-xlg) {
 		font-size: 1.4rem;

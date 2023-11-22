@@ -75,7 +75,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 		const datePickerTo = vanillaRangepicker.inputs[1]
 		datePickerTo.addEventListener('show', (e) => {
-			console.log(window.innerWidth< window.media.tablet)
 			if (window.innerWidth <= window.media.tablet) return
 			vanillaRangepicker.datepickers[0].show()
 		})

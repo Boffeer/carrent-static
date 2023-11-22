@@ -2028,6 +2028,7 @@ body._lock {
   z-index: 1;
   position: relative;
   margin-left: var(--p-container);
+  max-width: 98%;
 }
 @media (max-width: 991px) {
   .breadcrumbs {
@@ -2917,8 +2918,10 @@ body._lock {
   }
 }
 
-.menu__nav-item--has-children .menu__nav-link {
-  padding-bottom: 0;
+@media (max-width: 991px) {
+  .menu__nav-item--has-children .menu__nav-link {
+    padding-bottom: 0;
+  }
 }
 
 @media (min-width: 992px) {

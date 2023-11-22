@@ -91,7 +91,9 @@
 
 
 .menu__nav-item--has-children .menu__nav-link {
-  padding-bottom: 0;
+  @media (max-width: $tablet) {
+    padding-bottom: 0;
+  }
 }
 .menu__nav-item--has-children::after {
   @media (min-width: $tablet + 1) {

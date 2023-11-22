@@ -4,7 +4,7 @@ import en from 'vanillajs-datepicker/locales/en-GB';
 import es from 'vanillajs-datepicker/locales/es';
 
 window.addEventListener('DOMContentLoaded', (event) => {
-	const datepickers = document.querySelectorAll('.b_datepicker .input__field');
+	const datepickers = document.querySelectorAll('.b_datepicker');
 	const rangepickers = document.querySelectorAll('.b_rangepicker');
 
 	Object.assign(Datepicker.locales, en, es, ru);
@@ -23,12 +23,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		const pickerLang = rangepicker.parentElement.getAttribute('data-lang') || 'en';
 		const today = new Date().getTime();
 
-		const vanillaRangepicker = new DateRangePicker(rangepicker, {
+		let rangepickerConfig = {
 			todayHighlight: true,
 			language: pickerLang,
 			locale: locales[pickerLang],
 			minDate: today,
-		});
+			// inputs: [
+			// 	rangepicker.querySelector('.calendar-1'),
+			// 	rangepicker.querySelector('.calendar-2')
+			// ]
+		}
+
+		if (rangepicker.classList.contains('b_datepicker--calendar')) {
+			// rangepickerConfig.inputs = [
+			// 	rangepicker.querySelector('.calendar-1'),
+			// 	rangepicker.querySelector('.calendar-2')
+			// ]
+		}
+
+		const vanillaRangepicker = new DateRangePicker(rangepicker, rangepickerConfig)
 
 		const datePickerFrom = vanillaRangepicker.inputs[0] 
 
@@ -82,21 +95,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		})
 
 		rangepicker.classList.add(CLASSES.rangeInite)
-		initDatepickers()
 	});
 
 
-	function initDatepickers() {
-		const datepickers = document.querySelectorAll('.b_datepicker .input__field');
 		datepickers.forEach(datepicker => {
-			if(datepicker.closest('.b_rangepicker').classList.contains(CLASSES.rangeInite)) return;
-			console.log('this')
+			const rangepicker = datepicker.closest('.b_rangepicker');
+			if (rangepicker) {
+				if(rangepicker.classList.contains(CLASSES.rangeInite)) return;
+			}
 
-			const pickerLang = datepicker.parentElement.getAttribute('data-lang');
+			const pickerLang = datepicker.getAttribute('data-lang') || 'en';
 			const today = new Date().getTime();
 
-
-			const vanillaDatepicker = new Datepicker(datepicker, {
+			let datepickerInput = datepicker.querySelector('.input__field');
+			if (datepicker.classList.contains('b_datepicker--calendar')) {
+				datepickerInput = datepicker;
+			}
+			const vanillaDatepicker = new Datepicker(datepickerInput, {
 				todayHighlight: true,
 				language: pickerLang,
 				locale: locales[pickerLang],
@@ -130,7 +145,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		  //   this.blur();
 			// 	datepicker.hide();
 		  // });
-		})
-	}
+	})
 
 });

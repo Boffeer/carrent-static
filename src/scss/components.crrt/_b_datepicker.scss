@@ -1,7 +1,7 @@
 .b_datepicker {
 	position: relative;
 }
-.b_datepicker::after {
+.b_datepicker:not(.b_datepicker--calendar)::after {
 	content: "";
 	position: absolute;
 	top: 1.8em;
@@ -22,11 +22,38 @@
 	width: 160%;
 	font-size: 1rem;
 }
+.datepicker-inline {
+	width: 100%;
+}
+
+.b_datepicker--calendar .datepicker {
+	position: static;
+	width: 100%;
+	display: block;
+}
+
+.b_datepicker--calendar .datepicker:first-of-type {
+	border-right: 0.1em solid var(--fg-caption);
+}
+
+.b_datepicker--calendar .input__field {
+	display: none;
+}
+
+.b_datepicker--calendar .datepicker-cell {
+	height: 2.25em;
+}
 
 .datepicker-picker {
 	padding-top: 3em;
 	border-radius: 2em;
 	padding-bottom: 3em;
+}
+
+.b_datepicker--calendar .datepicker-picker {
+	padding-top: 0;
+	box-shadow: none;
+	border-radius: 0;
 }
 
 .datepicker-header .datepicker-controls {
@@ -87,6 +114,9 @@
 	font-size: 1.8em;
     // opacity: 0.4;
     color: var(--fg);
+}
+.datepicker-cell.range {
+	background-color: #dbf0ff;
 }
 
 .datepicker-cell.today:not(.selected) {

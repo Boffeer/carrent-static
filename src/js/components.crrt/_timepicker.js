@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var slider = document.getElementById("time-slider");
 var sliderContainer = document.querySelector(".slider-container");
 
+if (!slider) return;
+
 // Устанавливаем обработчики событий
 slider.addEventListener("mousedown", startDrag);
 slider.addEventListener("mousemove", drag);

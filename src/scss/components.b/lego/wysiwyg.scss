@@ -4,7 +4,6 @@
 
 	--fg: var(--fg-regular);
 
-	--fz-a: var(--fz-p);
 
 	--fw-regular: 300;
 	--fw-title: 700;
@@ -41,6 +40,8 @@
 		--fz-p: 1.2em;
 		--margin-bottom-p: 1.4em;
 	}
+
+	--fz-a: var(--fz-p);
 
 	--fz-h1: 5.5em;
 	--lh-h1: 1;

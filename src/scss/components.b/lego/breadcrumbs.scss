@@ -1,4 +1,5 @@
 .breadcrumbs {
+	padding-top: 5rem;
 	color: #646464;
 	margin-bottom: 1.6rem;
 	font-size: 1.8rem;
@@ -78,6 +79,9 @@
 
 .breadcrumbs__link {
 	transition: var(--tr-regular);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .breadcrumbs__link:hover {
@@ -88,22 +92,18 @@
 
 .breadcrumbs__link:after {
 	content: "";
-	margin-left: 0.3rem;
-	margin-right: 0.3rem;
-	color: #646464;
 	display: inline-block;
-	--size: 0.9rem;
-	max-width: var(--size);
-	min-width: var(--size);
-	width: var(--size);
-	height: var(--size);
-	background-image: url("../img/common/carousel-arrow.svg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-	transform: scaleX(-1);
-	@media (max-width: $mobile-xlg) {
-		margin-left: 0.1rem;
-		margin-right: 0.2rem;
-	}
+	margin-right: 0.7em;
+	margin-left: 0.7em;
+	--size: 1em;
+	--width: var(--size);
+	--height: var(--size);
+	width: var(--width);
+	min-width: var(--width);
+	max-width: var(--width);
+	height: var(--height);
+	min-height: var(--height);
+	max-height: var(--height);
+	@include mask(url('../img/common.crrt/angle-right.svg'));
+	background-color: #000;
 }

@@ -16,6 +16,15 @@
 
       <main class="main">
 
+        <div class="breadcrumbs">
+          <div class="breadcrumbs__container container">
+            <ul class="breadcrumbs__list">
+              <li class="breadcrumbs__item"><a href="/" class="breadcrumbs__link">Главная</a></li>
+              <li class="breadcrumbs__item">Автомобиль</li>
+            </ul>
+          </div>
+        </div>
+
         <section class="section product-hero">
           <div class="container product-hero__container">
             <div class="product-hero__carousel">
@@ -25,7 +34,7 @@
                     @@for (var i = 0; i < 8; i++) {
                       <div class="swiper-slide product-hero__gallery-slide">
                         <picture class="product-hero__pic">
-                          <img src="./img/catalog/product-page.jpg" alt="" class="product-hero__img">
+                          <img src="./img/single-car.crrt/car-image.jpg" alt="" class="product-hero__img">
                         </picture>
                       </div>
                     }
@@ -39,7 +48,7 @@
                     @@for (var i = 0; i < 8; i++) {
                       <div class="swiper-slide product-hero__thumbs-slide">
                         <picture class="product-hero__pic">
-                          <img src="./img/catalog/product-page.jpg" alt="" class="product-hero__img">
+                          <img src="./img/single-car.crrt/car-image.jpg" alt="" class="product-hero__img">
                         </picture>
                       </div>
                     }
@@ -49,9 +58,12 @@
               </div>
             </div>           
             <div class="product-hero__info">
-              <p>Выберите свободную дату</p>
+              <h3 class="product-hero__info-title">Выберите свободную дату</h3>
               <div class="product-hero__bookform">
-                <div class="calendar"></div>
+                <div class="b_rangepicker b_datepicker--calendar">
+                  <input class="input__field" type="text">
+                  <input class="input__field" type="text">
+                </div>
                 <div class="product-hero__bookform-tariffs">
                   <h3 class="product-hero__bookform-tariffs-title">Тарифы</h3>
                   @@for (var i = 0; i < 5; i++) {
@@ -66,9 +78,52 @@
                   </div>
                   }
                   <a href="#" class="button-primary product-hero__bookform-button">Оплатить бронь в Stripe</a>
-                  <p class="product-hero__bookform-caption wysiwyg">
-                    оплачивая, я соглашусь и принимаю <a href="#">политику конфиденциальности</a> и <a href="#">terms and conditions</a>
+                  <p class="product-hero__bookform-caption">
+                    оплачивая, я соглашусь и принимаю <a class="link" href="#">политику конфиденциальности</a> и <a class="link" href="#">terms and conditions</a>
                   </p>
+                </div>
+              </div>
+            </div>
+            <div class="product-hero__content">
+              <h1 class="product-hero__title">Nissan Micra 1.0 Automatic</h1>
+              <div class="product-hero__stat-list">
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Класс:</span>
+                  <span class="product-hero__stat-value">5751941</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Объем багажа:</span>
+                  <span class="product-hero__stat-value">5751941</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Цвет:</span>
+                  <span class="product-hero__stat-value">4.7</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Трансмиссия:</span>
+                  <span class="product-hero__stat-value">4.7</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Пробег:</span>
+                  <span class="product-hero__stat-value">1334x750</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Вместимость:</span>
+                  <span class="product-hero__stat-value">1334x750</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Тип кузова:</span>
+                  <span class="product-hero__stat-value">64</span>
+                </p>
+                <p class="product-hero__stat">
+                  <span class="product-hero__stat-title">Количество дверей:</span>
+                  <span class="product-hero__stat-value">64</span>
+                </p>
+              </div>
+              <div class="product-hero__options">
+                <h3 class="product-hero__options-title">Опции</h3>
+                <div class="product-hero__options-content wysiwyg">
+                  <p>Кондиционер, Система входа с бесконтактным ключом, Задние датчики парковки, Датчики парковки, Технология мобильного телефона, Bluetooth, USB, Аудио/iPod, Android Auto, Адаптивные фары</p>
                 </div>
               </div>
             </div>

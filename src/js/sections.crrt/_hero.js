@@ -33,9 +33,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		    loadPrevNextAmount: 2 //or, if you wish, preload the next 2 images
 		},
 	}
-	console.log(swiperConfig)
+	// console.log(swiperConfig)
 
 	let heroGallerySwiper = new Swiper('.hero-gallery__swiper', swiperConfig);
-	console.log(heroGallerySwiper)
+	// console.log(heroGallerySwiper)
 
 });

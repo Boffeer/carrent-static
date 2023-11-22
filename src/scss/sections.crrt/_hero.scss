@@ -45,6 +45,7 @@
 
 
 .hero__bookform {
+	--gap: 1em 1.4em;
 	padding: 3.4em 1.5em;
 	border-radius: 1.8em;
 	background-color: var(--bg-card-dark);
@@ -52,8 +53,14 @@
 	box-shadow: 0.9em 2.55em 7.56em rgba(0, 0, 0, 0.05);
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: 1em 1.4em;
+	gap: var(--gap);
 }
+
+.hero__bookform-range {
+	gap: var(--gap);
+	grid-column: span 2;
+}
+
 .hero__bookform-submit {
     grid-column: span 2;
     justify-self: center;

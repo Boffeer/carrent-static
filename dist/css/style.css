@@ -2932,6 +2932,126 @@ body._lock {
   background-position: center;
 }
 
+.datepicker {
+  width: 160%;
+  font-size: 1rem;
+}
+
+.datepicker-picker {
+  padding-top: 3em;
+  border-radius: 2em;
+  padding-bottom: 3em;
+}
+
+.datepicker-header .datepicker-controls {
+  padding-bottom: 2.7em;
+  margin-bottom: 2.7em;
+  align-items: center;
+  border-bottom: 0.1em solid #f4f4f4;
+}
+
+.datepicker-controls .button {
+  font-size: 1em;
+  height: initial;
+}
+
+.datepicker-controls .button.view-switch {
+  font-size: 1.8em;
+  padding: 0;
+}
+
+.datepicker-view {
+  width: 100%;
+}
+
+.datepicker .button.prev-button,
+.datepicker .button.next-button {
+  color: transparent;
+  -webkit-mask: url("../img/common.crrt/angle-right.svg");
+  mask: url("../img/common.crrt/angle-right.svg");
+  background: var(--fg-regular);
+  mask-size: 2em;
+  -webkit-mask-size: 2em;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.datepicker .button.prev-button {
+  transform: scaleX(-1);
+}
+
+.datepicker .days-of-week {
+  margin-bottom: 2.9em;
+}
+
+.datepicker .dow {
+  color: rgba(0, 0, 0, 0.27);
+  text-align: center;
+  font-size: 1.2em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 95.3%; /* 12.266px */
+}
+
+.datepicker-cell {
+  height: 3.25em;
+  font-size: 1.8em;
+  color: var(--fg);
+}
+
+.datepicker-cell.today:not(.selected) {
+  background: transparent;
+}
+
+.datepicker-cell.today:not(.selected):not(.disabled) {
+  color: var(--fg);
+}
+
+.datepicker-cell.selected,
+.datepicker-cell.selected:hover {
+  background-color: var(--c-secondary);
+  font-weight: 900;
+}
+
+.datepicker-cell.today.focused:not(.selected) {
+  background: #f4f4f4;
+}
+
+.datepicker-cell.today {
+  position: relative;
+}
+
+.datepicker-cell.today::after {
+  content: "";
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  display: block;
+  --size: 0.7em;
+  --width: var(--size);
+  --height: var(--size);
+  width: var(--width);
+  min-width: var(--width);
+  max-width: var(--width);
+  height: var(--height);
+  min-height: var(--height);
+  max-height: var(--height);
+  border-radius: var(--size);
+  background: var(--c-secondary);
+}
+
+.b_rangepicker {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.b_rangepicker .datepicker {
+  font-size: 0.7rem;
+  width: 100%;
+}
+
 .button-primary,
 .button-secondary {
   --padding: var(--padding-block) var(--padding-inline);
@@ -4057,6 +4177,7 @@ body:not(._lock) .header--hidden {
 }
 
 .hero__bookform {
+  --gap: 1em 1.4em;
   padding: 3.4em 1.5em;
   border-radius: 1.8em;
   background-color: var(--bg-card-dark);
@@ -4064,7 +4185,12 @@ body:not(._lock) .header--hidden {
   box-shadow: 0.9em 2.55em 7.56em rgba(0, 0, 0, 0.05);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1em 1.4em;
+  gap: var(--gap);
+}
+
+.hero__bookform-range {
+  gap: var(--gap);
+  grid-column: span 2;
 }
 
 .hero__bookform-submit {

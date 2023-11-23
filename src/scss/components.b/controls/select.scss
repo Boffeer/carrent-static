@@ -100,6 +100,8 @@
     visibility: hidden;
     transition: var(--tr-regular);
     transform: translateY(-2rem);
+    max-height: 21em;
+    overflow-y: auto;
 
     @media (max-width: $tablet-xlg) {
       padding: 2rem;

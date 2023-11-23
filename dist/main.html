@@ -40,7 +40,7 @@
 
 
 
-      <link rel="stylesheet" href="./css/style.css?_v=20231123224134">
+      <link rel="stylesheet" href="./css/style.css?_v=20231124001643">
   </head>
   
   <body class="page-home">
@@ -140,7 +140,7 @@
                 <strong>от 40€ в сутки</strong>
               </h2>
               <div class="bookform hero__bookform">
-                  <div class="select">
+                  <div class="select hero__bookform-select">
   <!-- <div class="select__label">Откуда вы узнали о нас?</div> -->
   <select class="select__input"
           name=""
@@ -163,9 +163,39 @@
       <li>
         <button class="select__option" type="button">Локация 3</button>
       </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
   </ul>
 </div>
-                  <div class="select">
+                  <div class="select hero__bookform-select">
   <!-- <div class="select__label">Откуда вы узнали о нас?</div> -->
   <select class="select__input"
           name=""
@@ -184,6 +214,36 @@
       </li>
       <li>
         <button class="select__option" type="button">Локация 2</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
+      </li>
+      <li>
+        <button class="select__option" type="button">Локация 3</button>
       </li>
       <li>
         <button class="select__option" type="button">Локация 3</button>
@@ -198,7 +258,7 @@
     name="user_birthday"
     type="text"
     
-      placeholder="Когда"
+      placeholder="Start date"
     
     readonly
     required
@@ -212,7 +272,7 @@
     name="user_birthday"
     type="text"
     
-      placeholder="Когда"
+      placeholder="End date"
     
     readonly
     required
@@ -220,11 +280,25 @@
 </label>
 
                   </div>
-                  <div class="slider"
+                  <div class="timepicker hero__bookform-timepicker"
                        data-min="08:00"
                        data-max="20:00"
-                       data-step="15">
-                    <div class="handle">00:00</div>
+                       data-step="15"
+                  >
+                    <div class="timepicker__control">
+                      <div class="timepicker__drag"></div>
+                    </div>
+                    <input class="timepicker__value" readonly type="text" name="time_from">
+                  </div>
+                  <div class="timepicker hero__bookform-timepicker"
+                       data-min="08:00"
+                       data-max="20:00"
+                       data-step="15"
+                  >
+                    <div class="timepicker__control">
+                      <div class="timepicker__drag"></div>
+                    </div>
+                    <input class="timepicker__value" readonly type="text" name="time_to">
                   </div>
                   <button class="button-primary hero__bookform-submit">Подобрать автомобиль</button>
               </div>
@@ -1167,6 +1241,6 @@
 
     
 
-    <script src="./js/index.min.js?_v=20231123224134"></script>
+    <script src="./js/index.min.js?_v=20231124001643"></script>
   </body>
 </html>

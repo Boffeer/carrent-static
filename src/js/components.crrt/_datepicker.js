@@ -28,6 +28,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			language: pickerLang,
 			locale: locales[pickerLang],
 			minDate: today,
+			// orientation: 'top',
 		}
 
 		const isMobile = () => (window.innerWidth <= window.media.tablet)

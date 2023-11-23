@@ -185,12 +185,16 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 
-	@media (max-width: $mobile) {
-		grid-template-columns: 100%;
-	}
+	// @media (max-width: $mobile) {
+	// 	grid-template-columns: 100%;
+	// }
 }
 
 .b_rangepicker .datepicker {
 	font-size: 0.7rem;
 	width: 100%;
+
+	@media (max-width: $mobile) {
+		width: calc(200% + 1rem);
+	}
 }

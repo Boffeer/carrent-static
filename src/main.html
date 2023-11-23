@@ -24,17 +24,31 @@
                 <strong>от 40€ в сутки</strong>
               </h2>
               <div class="bookform hero__bookform">
-                  @@include('./tpls/input/select.html', {})
-                  @@include('./tpls/input/select.html', {})
+                  @@include('./tpls/input/select.html', {className: 'hero__bookform-select'})
+                  @@include('./tpls/input/select.html', {className: 'hero__bookform-select'})
                   <div class="hero__bookform-range b_rangepicker" data-lang="ru">
-                    @@include('./tpls/input/datepicker.html', {placeholder: 'Когда'})
-                    @@include('./tpls/input/datepicker.html', {placeholder: 'Когда'})
+                    @@include('./tpls/input/datepicker.html', {placeholder: 'Start date'})
+                    @@include('./tpls/input/datepicker.html', {placeholder: 'End date'})
                   </div>
-                  <div class="slider"
+                  <div class="timepicker hero__bookform-timepicker"
                        data-min="08:00"
                        data-max="20:00"
-                       data-step="15">
-                    <div class="handle">00:00</div>
+                       data-step="15"
+                  >
+                    <div class="timepicker__control">
+                      <div class="timepicker__drag"></div>
+                    </div>
+                    <input class="timepicker__value" readonly type="text" name="time_from">
+                  </div>
+                  <div class="timepicker hero__bookform-timepicker"
+                       data-min="08:00"
+                       data-max="20:00"
+                       data-step="15"
+                  >
+                    <div class="timepicker__control">
+                      <div class="timepicker__drag"></div>
+                    </div>
+                    <input class="timepicker__value" readonly type="text" name="time_to">
                   </div>
                   <button class="button-primary hero__bookform-submit">Подобрать автомобиль</button>
               </div>

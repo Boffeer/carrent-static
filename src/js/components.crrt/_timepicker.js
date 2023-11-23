@@ -13,9 +13,10 @@ function formatTime(hours, minutes) {
   return formattedHours + ':' + formattedMinutes;
 }
 
-function updateSliderTime(slider, hours, minutes) {
-  const handle = slider.querySelector('.handle');
-  handle.textContent = formatTime(hours, minutes);
+function updateSliderTime(timepicker, hours, minutes) {
+  const handle = timepicker.querySelector('.timepicker__value');
+  // handle.textContent = formatTime(hours, minutes);
+  handle.value = formatTime(hours, minutes);
 }
 
 function calculateNearestStep(minutes, step) {
@@ -34,15 +35,45 @@ function calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinu
 }
 
 function updateHandlePosition(slider, position) {
-  const handle = slider.querySelector('.handle');
-  handle.style.left = Math.max(0, Math.min(position, 94)) + '%';
+  const handle = slider.querySelector('.timepicker__drag');
+  handle.style.left = Math.max(2, Math.min(position, 100)) + '%';
+}
+
+function addLayout(timepickerControl, minTime, maxTime) {
+  const minTimeIndicator = document.createElement('span');
+  minTimeIndicator.classList.add('js_created');
+  minTimeIndicator.classList.add('timepicker__min');
+  minTimeIndicator.innerText = minTime
+  timepickerControl.appendChild(minTimeIndicator);
+
+  const maxTimeIndicator = document.createElement('span');
+  maxTimeIndicator.classList.add('js_created');
+  maxTimeIndicator.classList.add('timepicker__max');
+  maxTimeIndicator.innerText = maxTime
+  timepickerControl.appendChild(maxTimeIndicator);
+
+  const lines = document.createElement('span');
+  lines.classList.add('js_created');
+  lines.classList.add('timepicker__lines');
+  timepickerControl.appendChild(lines);
+  for (let i = 0; i < 5; i++) {
+    const dash = document.createElement('span');
+    dash.classList.add('js_created');
+    dash.classList.add('timepicker__lines-dash');
+    lines.append(dash);
+  }
 }
 
 function initSlider(slider) {
   let dragging = false;
 
+  const timepickerControl = slider.querySelector('.timepicker__control')
+
   const minTime = slider.getAttribute('data-min');
   const maxTime = slider.getAttribute('data-max');
+
+  addLayout(timepickerControl, minTime, maxTime);
+
   const step = parseInt(slider.getAttribute('data-step')) || 15;
 
   const [minHours, minMinutes] = minTime.split(':').map(val => parseInt(val));
@@ -111,7 +142,7 @@ function initSlider(slider) {
   });
 }
 
-const sliders = document.querySelectorAll('.slider');
-sliders.forEach(function(slider) {
-  initSlider(slider);
+const sliders = document.querySelectorAll('.timepicker');
+sliders.forEach(timepicker => {
+  initSlider(timepicker);
 });

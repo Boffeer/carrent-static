@@ -1,7 +1,7 @@
 .select {
   /*
   --fg: #87909E;
-  --c-selected: #222;
+  --fg-selected: #222;
   --label-color: var(--bg-element);
   --border-color: var(--fg-regular);
   --bg: #f8f8f8;
@@ -82,7 +82,7 @@
 }
 
 .select__toggle--selected {
-    color: var(--c-selected);
+    color: var(--fg-selected);
 }
 
 .select__list {
@@ -93,7 +93,7 @@
     z-index: 2;
     display: grid;
     gap: var(--list-gap);
-    padding: var(--list-padding);
+    // padding: var(--list-padding);
     border-radius: 0 0 var(--brad) var(--brad);
     background: var(--list-bg);
     opacity: 0;
@@ -104,10 +104,42 @@
     overflow-y: auto;
 
     @media (max-width: $tablet-xlg) {
-      padding: 2rem;
+      // padding: 2rem;
       gap: 2rem;
     }
 }
+
+.select__list::before,
+.select__list::after {
+  content: "";
+  position: sticky;
+  left: 0;
+  display: block;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.select__list::before {
+  top: 0;
+  // border-radius: var(--brad) var(--brad) 0 0;
+  background: linear-gradient(to bottom, var(--list-bg) 0%, transparent 100%);
+  margin-bottom: -5em;
+  height: 2em;
+}
+
+.select__list::after {
+  bottom: 0;
+  border-radius: 0 0 var(--brad) var(--brad);
+  background: linear-gradient(to bottom, transparent 0%, var(--list-bg) 100%);
+  height: 2em;
+}
+
+.select__list li:last-of-type {
+  margin-bottom: -5em;
+}
+
+
 .select--active .select__list {
   opacity: 1;
   visibility: visible;
@@ -117,20 +149,21 @@
 .select__option {
     width: 100%;
     position: relative;
-    padding-left: 2rem;
-    color: var(--fg);
+    padding-left: 3rem;
+    color: var(--fg-selected);
     font-family: var(--ff-regular);
     font-weight: var(--fw);
     font-size: var(--fz);
     line-height: var(--lh);
     text-align: left;
 }
+
 .select__option:focus {
-  color: var(--c-selected);
+  color: var(--fg-selected);
 }
 .select__option:hover {
 	@media (any-hover:hover) {
-    color: var(--c-selected);
+    color: var(--fg-selected);
 	}
 }
 
@@ -138,7 +171,7 @@
     content: '✓';
     position: absolute;
     top: 0;
-    left: 0;
+    left: 1em;
     display: block;
     margin-right: 0.3em;
     transform: scale(0);
@@ -148,7 +181,7 @@
 
 .select__option--active {
     opacity: 1;
-    color: var(--c-selected);
+    color: var(--fg-selected);
 }
 
 .select__option--active::before {

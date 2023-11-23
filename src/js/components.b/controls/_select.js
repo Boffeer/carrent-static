@@ -33,11 +33,17 @@ function initSelects(selectNodes) {
         inputNode.selectedIndex = index + 1;
         toggleNode.classList.add(CLASSES.toggleSelected);
         toggleNode.textContent = optionNode.textContent;
+
+        selectNode.classList.remove(CLASSES.componentActive);
       });
     });
 
     function handleToggle(evt) {
       evt.stopPropagation();
+
+      const openedSelects = document.querySelectorAll(`.${CLASSES.componentActive}`);
+      openedSelects.forEach(openedSelect => openedSelect.classList.remove(CLASSES.componentActive))
+
       selectNode.classList.toggle(CLASSES.componentActive);
 
       if (selectNode.classList.contains(CLASSES.componentActive)) {

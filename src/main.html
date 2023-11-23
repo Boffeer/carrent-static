@@ -24,8 +24,8 @@
                 <strong>от 40€ в сутки</strong>
               </h2>
               <div class="bookform hero__bookform">
-                  @@include('./tpls/input/select.html', {className: 'hero__bookform-select'})
-                  @@include('./tpls/input/select.html', {className: 'hero__bookform-select'})
+                  @@include('./tpls/input/select.html', {className: 'hero__bookform-select', placeholder: 'Pick-up location'})
+                  @@include('./tpls/input/select.html', {className: 'hero__bookform-select', placeholder: 'Drop-off location'})
                   <div class="hero__bookform-range b_rangepicker" data-lang="ru">
                     @@include('./tpls/input/datepicker.html', {placeholder: 'Start date'})
                     @@include('./tpls/input/datepicker.html', {placeholder: 'End date'})

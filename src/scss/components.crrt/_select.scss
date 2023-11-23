@@ -2,8 +2,9 @@
 
 .select {
 	font-size: 1rem;
-  --fg: #4f4f4f;
-  --c-selected: var(--fg);
+  --fg: var(--fg-caption);
+  // --fg: #4f4f4f;
+  --fg-selected: #4f4f4f;
   // --label-color: var(--bg-element);
   --border-color: ;
   --bg: #fbfbfb;

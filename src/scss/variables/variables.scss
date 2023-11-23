@@ -7,6 +7,10 @@
 
   --p-container: 1.5rem;
 
+  @media (max-width: $tablet) {
+    --p-container: 1rem;
+  }
+
 
   // Widths
   --w-container: 117rem;

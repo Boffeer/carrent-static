@@ -27,40 +27,43 @@
 
         <section class="section product-hero">
           <div class="container product-hero__container">
-            <div class="product-hero__carousel">
-              <div class="product-hero__gallery">
-                <div class="swiper product-hero__gallery-swiper">
-                  <div class="swiper-wrapper">
-                    @@for (var i = 0; i < 8; i++) {
-                      <div class="swiper-slide product-hero__gallery-slide">
-                        <picture class="product-hero__pic">
-                          <img src="./img/single-car.crrt/car-image.jpg" alt="" class="product-hero__img">
-                        </picture>
-                      </div>
-                    }
+            <div class="product-hero__main">
+              <div class="product-hero__carousel">                
+                <div class="product-hero__gallery">
+                  <div class="swiper product-hero__gallery-swiper">
+                    <div class="swiper-wrapper">
+                      @@for (var i = 0; i < 8; i++) {
+                        <div class="swiper-slide product-hero__gallery-slide">
+                          <picture class="product-hero__pic">
+                            <img src="./img/single-car.crrt/car-image.jpg" alt="" class="product-hero__img">
+                          </picture>
+                        </div>
+                      }
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="product-hero__thumbs">
-                <div class="swiper-button-prev product-hero__thumbs-button-prev"></div>
-                <div class="swiper product-hero__thumbs-swiper">
-                  <div class="swiper-wrapper">
-                    @@for (var i = 0; i < 8; i++) {
-                      <div class="swiper-slide product-hero__thumbs-slide">
-                        <picture class="product-hero__pic">
-                          <img src="./img/single-car.crrt/car-image.jpg" alt="" class="product-hero__img">
-                        </picture>
-                      </div>
-                    }
+                <div class="product-hero__thumbs">
+                  <div class="swiper-button-prev product-hero__thumbs-button-prev"></div>
+                  <div class="swiper product-hero__thumbs-swiper">
+                    <div class="swiper-wrapper">
+                      @@for (var i = 0; i < 8; i++) {
+                        <div class="swiper-slide product-hero__thumbs-slide">
+                          <picture class="product-hero__pic">
+                            <img src="./img/single-car.crrt/car-image.jpg" alt="" class="product-hero__img">
+                          </picture>
+                        </div>
+                      }
+                    </div>
                   </div>
+                  <div class="swiper-button-next product-hero__thumbs-button-next"></div>
                 </div>
-                <div class="swiper-button-next product-hero__thumbs-button-next"></div>
               </div>
+              <h1 class="product-hero__title">Nissan Micra 1.0 Automatic</h1>
             </div>           
             <div class="product-hero__info">
               <h3 class="product-hero__info-title">Выберите свободную дату</h3>
               <div class="product-hero__bookform">
-                <div class="b_rangepicker b_datepicker--calendar">
+                <div class="product-hero__calendar b_rangepicker b_datepicker--calendar">
                   <input class="input__field" type="text">
                   <input class="input__field" type="text">
                 </div>
@@ -85,7 +88,6 @@
               </div>
             </div>
             <div class="product-hero__content">
-              <h1 class="product-hero__title">Nissan Micra 1.0 Automatic</h1>
               <div class="product-hero__stat-list">
                 <p class="product-hero__stat">
                   <span class="product-hero__stat-title">Класс:</span>

@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	  		swiper: productHeroGallery
 	  	},
 			breakpoints: {
-				602: {
+				992: {
 					direction: 'vertical',
 				}
 			},

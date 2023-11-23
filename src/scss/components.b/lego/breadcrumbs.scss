@@ -2,6 +2,7 @@
 	padding-top: 5rem;
 	color: #646464;
 	margin-bottom: 1.6rem;
+  	margin-bottom: 0;
 	font-size: 1.8rem;
 	line-height: 120%;
 	overflow: hidden;
@@ -14,6 +15,9 @@
   margin-left: var(--p-container);
   max-width: 98%;
 
+  @media (max-width: $tablet) {
+  	padding-top: 2rem;
+  }
 	@media (max-width: $tablet-xlg) {
 		font-size: 1.4rem;
 	  // -webkit-mask-image: var(--mask);

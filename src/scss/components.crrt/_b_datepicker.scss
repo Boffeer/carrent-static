@@ -37,7 +37,9 @@
 }
 
 .b_datepicker--calendar .datepicker:first-of-type {
-	border-right: 0.1em solid var(--fg-caption);
+	@media (min-width: $tablet + 1) {
+		border-right: 0.1em solid var(--fg-caption);
+	}
 }
 
 .b_datepicker--calendar .input__field {

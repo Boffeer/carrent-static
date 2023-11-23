@@ -1,78 +1,117 @@
-/*
+function formatTime(hours, minutes) {
+  let formattedHours = hours.toString();
+  let formattedMinutes = minutes.toString();
 
-                  <div class="slider-container">
-                    <div id="time-slider" class="slider"></div>
-                  </div>
+  if (formattedHours.length < 2) {
+    formattedHours = '0' + formattedHours;
+  }
 
-*/
-window.addEventListener('DOMContentLoaded', (event) => {
-	// Получаем элемент слайдера времени
-var slider = document.getElementById("time-slider");
-var sliderContainer = document.querySelector(".slider-container");
+  if (formattedMinutes.length < 2) {
+    formattedMinutes = '0' + formattedMinutes;
+  }
 
-if (!slider) return;
-
-// Устанавливаем обработчики событий
-slider.addEventListener("mousedown", startDrag);
-slider.addEventListener("mousemove", drag);
-slider.addEventListener("mouseup", stopDrag);
-sliderContainer.addEventListener("mouseleave", stopDrag);
-
-slider.addEventListener("touchstart", startDrag);
-slider.addEventListener("touchmove", drag);
-slider.addEventListener("touchend", stopDrag);
-slider.addEventListener("touchcancel", stopDrag);
-
-// Переменные для хранения состояния перетаскивания
-var isDragging = false;
-var startX = 0;
-
-// Количество минут в интервале времени
-var intervalMinutes = 15;
-
-// Устанавливаем начальные координаты перетаскивания при начале перетаскивания
-function startDrag(event) {
-  isDragging = true;
-  startX = event.clientX || event.touches[0].clientX;
+  return formattedHours + ':' + formattedMinutes;
 }
 
-// Обновляем положение ползунка при перетаскивании
-function drag(event) {
-  if (isDragging) {
-    var currentX = event.clientX || event.touches[0].clientX;
-    var offsetX = currentX - startX;
-    var timeMinutes = calculateTime(offsetX);
-    updateTime(timeMinutes);
+function updateSliderTime(slider, hours, minutes) {
+  const handle = slider.querySelector('.handle');
+  handle.textContent = formatTime(hours, minutes);
+}
+
+function calculateNearestStep(minutes, step) {
+  const remainder = minutes % step;
+  if (remainder < step / 2) {
+    return minutes - remainder;
+  } else {
+    return minutes + (step - remainder);
   }
 }
 
-// Завершаем перетаскивание
-function stopDrag() {
-  isDragging = false;
+function calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes) {
+  const totalMinutes = (maxHours - minHours) * 60 + (maxMinutes - minMinutes);
+  const selectedMinutes = (currentHours - minHours) * 60 + (currentMinutes - minMinutes);
+  return (selectedMinutes / totalMinutes) * 100;
 }
 
-// Расчитываем время на основе смещения ползунка
-function calculateTime(offsetX) {
-  var sliderWidth = sliderContainer.offsetWidth;
-  var timeRange = 24 * 60; // Диапазон времени в минутах
-  var minutesPerPixel = timeRange / sliderWidth;
-  var time = minutesPerPixel * offsetX;
-  time = Math.max(0, Math.min(timeRange, time)); // Ограничиваем время в диапазоне от 0 до 24 * 60
-  return time;
+function updateHandlePosition(slider, position) {
+  const handle = slider.querySelector('.handle');
+  handle.style.left = Math.max(0, Math.min(position, 94)) + '%';
 }
 
-// Обновляем значение времени
-function updateTime(timeMinutes) {
-  // Переводим время в часы и минуты
-  var hours = Math.floor(timeMinutes / 60);
-  var minutes = Math.round((timeMinutes % 60) / intervalMinutes) * intervalMinutes;
+function initSlider(slider) {
+  let dragging = false;
 
-  // Форматируем время в формат HH:MM
-  var formattedTime = hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0");
+  const minTime = slider.getAttribute('data-min');
+  const maxTime = slider.getAttribute('data-max');
+  const step = parseInt(slider.getAttribute('data-step')) || 15;
 
-  // Здесь можно выполнить нужные действия с выбранным временем, например, отобразить его на странице
-  console.log("Выбранное время:", formattedTime);
-  document.querySelector('.slider').innerText = formattedTime;
-  
+  const [minHours, minMinutes] = minTime.split(':').map(val => parseInt(val));
+  const [maxHours, maxMinutes] = maxTime.split(':').map(val => parseInt(val));
+
+  let currentHours = minHours;
+  let currentMinutes = minMinutes;
+
+  updateSliderTime(slider, currentHours, currentMinutes);
+  updateHandlePosition(slider, 0);
+
+  function handleSliderMove(event) {
+    if (!dragging) return;
+
+    const sliderRect = slider.getBoundingClientRect();
+    const position = (event.clientX - sliderRect.left) / sliderRect.width;
+
+    const totalMinutes = (maxHours - minHours) * 60 + (maxMinutes - minMinutes);
+    const selectedMinutes = Math.round(position * totalMinutes);
+
+    const steppedMinutes = calculateNearestStep(selectedMinutes, step);
+
+    currentHours = Math.floor((steppedMinutes / 60) % 24) + minHours;
+    currentMinutes = steppedMinutes % 60 + minMinutes;
+
+    if (currentHours < minHours) {
+      currentHours = minHours;
+      currentMinutes = minMinutes;
+    }
+
+    if (currentHours > maxHours || (currentHours === maxHours && currentMinutes > maxMinutes)) {
+      currentHours = maxHours;
+      currentMinutes = maxMinutes;
+    }
+
+    updateSliderTime(slider, currentHours, currentMinutes);
+    updateHandlePosition(slider, calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
+  }
+
+  slider.addEventListener('mousedown', function(event) {
+    dragging = true;
+    handleSliderMove(event);
+    document.addEventListener('mousemove', handleSliderMove);
+  });
+
+  slider.addEventListener('touchstart', function(event) {
+    dragging = true;
+    handleSliderMove(event.touches[0]);
+    document.addEventListener('touchmove', function(event) {
+      handleSliderMove(event.touches[0]);
+    });
+  });
+
+  document.addEventListener('mouseup', function() {
+    if (dragging) {
+      dragging = false;
+      document.removeEventListener('mousemove', handleSliderMove);
+    }
+  });
+
+  document.addEventListener('touchend', function() {
+    if (dragging) {
+      dragging = false;
+      document.removeEventListener('touchmove', handleSliderMove);
+    }
+  });
 }
+
+const sliders = document.querySelectorAll('.slider');
+sliders.forEach(function(slider) {
+  initSlider(slider);
 });

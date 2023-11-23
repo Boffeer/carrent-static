@@ -1,9 +1,17 @@
 .article {
 	--padding-inline: 10rem;
 	padding-top: 3rem;
+
+	@media (max-width: $tablet) {
+		--padding-inline: 3rem;
+	}
 	@media (max-width: $mobile-xlg) {
 		padding-top: 0;
 	}
+}
+
+.article__title {
+	padding-top: 1em;
 }
 
 .article__content {

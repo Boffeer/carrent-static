@@ -4230,7 +4230,7 @@ body._lock {
   padding-top: 1.2em;
   padding-bottom: 1.2em;
 }
-@media (max-width: 575px) {
+@media (max-width: 991px) {
   .header {
     padding-top: 0;
     padding-bottom: 0;
@@ -5461,10 +5461,19 @@ body:not(._lock) .header--hidden {
   --padding-inline: 10rem;
   padding-top: 3rem;
 }
+@media (max-width: 991px) {
+  .article {
+    --padding-inline: 3rem;
+  }
+}
 @media (max-width: 449px) {
   .article {
     padding-top: 0;
   }
+}
+
+.article__title {
+  padding-top: 1em;
 }
 
 .article__content {

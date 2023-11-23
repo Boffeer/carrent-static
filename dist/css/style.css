@@ -3398,7 +3398,7 @@ body._lock {
 }
 @media (max-width: 575px) {
   .timepicker__control {
-    width: 65%;
+    width: 60%;
   }
 }
 
@@ -3438,10 +3438,11 @@ body._lock {
   color: var(--fg-regular);
   background: transparent;
   text-align: right;
+  padding-left: 0.2em;
 }
 @media (max-width: 575px) {
   .timepicker__value {
-    width: 25%;
+    width: 30%;
     font-size: 1.2em;
   }
 }
@@ -3463,6 +3464,7 @@ body._lock {
 @media (max-width: 575px) {
   .timepicker__min,
   .timepicker__max {
+    top: -1em;
     font-size: 0.7em;
   }
 }

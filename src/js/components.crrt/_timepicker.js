@@ -1,3 +1,5 @@
+import "../libs/inputmask.js";
+
 function formatTime(hours, minutes) {
   let formattedHours = hours.toString();
   let formattedMinutes = minutes.toString();
@@ -39,6 +41,15 @@ function updateHandlePosition(slider, position) {
   handle.style.left = Math.max(2, Math.min(position, 100)) + '%';
 }
 
+function getNearestToStep(number, step) {
+  const remainder = number % step;
+  if (remainder <= step / 2) {
+    return number - remainder;
+  } else {
+    return number + (step - remainder);
+  }
+}
+
 function addLayout(timepickerControl, minTime, maxTime) {
   const minTimeIndicator = document.createElement('span');
   minTimeIndicator.classList.add('js_created');
@@ -67,7 +78,8 @@ function addLayout(timepickerControl, minTime, maxTime) {
 function initSlider(slider) {
   let dragging = false;
 
-  const timepickerControl = slider.querySelector('.timepicker__control')
+  const timepickerControl = slider.querySelector('.timepicker__control');
+  const timepickerInput = slider.querySelector('.timepicker__value');
 
   const minTime = slider.getAttribute('data-min');
   const maxTime = slider.getAttribute('data-max');
@@ -79,11 +91,28 @@ function initSlider(slider) {
   const [minHours, minMinutes] = minTime.split(':').map(val => parseInt(val));
   const [maxHours, maxMinutes] = maxTime.split(':').map(val => parseInt(val));
 
-  let currentHours = minHours;
+  let currentHours =  minHours;
   let currentMinutes = minMinutes;
 
+  let timepickerInputHours;
+  let timepickerInputMinutes;
+  if (timepickerInput.value.includes(':')) {
+    [timepickerInputHours, timepickerInputMinutes] = timepickerInput.value.split(':').map(val => parseInt(val))
+    timepickerInputMinutes = getNearestToStep(timepickerInputMinutes, step)
+
+    if (timepickerInputHours > 23) {
+      timepickerInputHours = 23
+    }
+    if (timepickerInputHours < 0) {
+      timepickerInputHours = 0
+    }
+
+    currentHours = timepickerInputHours;
+    currentMinutes = timepickerInputMinutes;
+  }
+
   updateSliderTime(slider, currentHours, currentMinutes);
-  updateHandlePosition(slider, 0);
+  updateHandlePosition(slider, calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
 
   function handleSliderMove(event) {
     if (!dragging) return;
@@ -113,13 +142,13 @@ function initSlider(slider) {
     updateHandlePosition(slider, calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
   }
 
-  slider.addEventListener('mousedown', function(event) {
+  timepickerControl.addEventListener('mousedown', function(event) {
     dragging = true;
     handleSliderMove(event);
     document.addEventListener('mousemove', handleSliderMove);
   });
 
-  slider.addEventListener('touchstart', function(event) {
+  timepickerControl.addEventListener('touchstart', function(event) {
     dragging = true;
     handleSliderMove(event.touches[0]);
     document.addEventListener('touchmove', function(event) {
@@ -127,14 +156,14 @@ function initSlider(slider) {
     });
   });
 
-  document.addEventListener('mouseup', function() {
+  timepickerControl.addEventListener('mouseup', function() {
     if (dragging) {
       dragging = false;
       document.removeEventListener('mousemove', handleSliderMove);
     }
   });
 
-  document.addEventListener('touchend', function() {
+  timepickerControl.addEventListener('touchend', function() {
     if (dragging) {
       dragging = false;
       document.removeEventListener('touchmove', handleSliderMove);
@@ -145,4 +174,29 @@ function initSlider(slider) {
 const sliders = document.querySelectorAll('.timepicker');
 sliders.forEach(timepicker => {
   initSlider(timepicker);
+
+
+  const timepickerValue = timepicker.querySelector('.timepicker__value');
+  const maskOptions = {
+    mask: '99:99',
+    inputmode: 'numeric',
+  };
+  new Inputmask(maskOptions).mask(timepickerValue);
+
+  timepickerValue.addEventListener('input', (e) => {
+    e.stopPropagation();
+    let value = e.target.value;
+
+    let [currentHours, currentMinutes] = value.split(':').map(val=> val)
+    if (value.includes('_')) return;
+
+    const minTime = timepicker.getAttribute('data-min');
+    const maxTime = timepicker.getAttribute('data-max');
+    const [minHours, minMinutes] = minTime.split(':').map(val => parseInt(val));
+    const [maxHours, maxMinutes] = maxTime.split(':').map(val => parseInt(val));
+    const step = parseInt(timepicker.getAttribute('data-step')) || 15;
+
+    updateHandlePosition(timepicker, calculateHandlePosition(timepicker, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
+  })
+
 });

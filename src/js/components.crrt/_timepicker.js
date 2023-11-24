@@ -30,7 +30,7 @@ function calculateNearestStep(minutes, step) {
   }
 }
 
-function calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes) {
+function calculateHandlePosition(minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes) {
   const totalMinutes = (maxHours - minHours) * 60 + (maxMinutes - minMinutes);
   const selectedMinutes = (currentHours - minHours) * 60 + (currentMinutes - minMinutes);
   return (selectedMinutes / totalMinutes) * 100;
@@ -112,12 +112,12 @@ function initSlider(slider) {
   }
 
   updateSliderTime(slider, currentHours, currentMinutes);
-  updateHandlePosition(slider, calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
+  updateHandlePosition(slider, calculateHandlePosition(minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
 
   function handleSliderMove(event) {
     if (!dragging) return;
 
-    const sliderRect = slider.getBoundingClientRect();
+    const sliderRect = timepickerControl.getBoundingClientRect();
     const position = (event.clientX - sliderRect.left) / sliderRect.width;
 
     const totalMinutes = (maxHours - minHours) * 60 + (maxMinutes - minMinutes);
@@ -139,7 +139,7 @@ function initSlider(slider) {
     }
 
     updateSliderTime(slider, currentHours, currentMinutes);
-    updateHandlePosition(slider, calculateHandlePosition(slider, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
+    updateHandlePosition(slider, calculateHandlePosition(minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
   }
 
   timepickerControl.addEventListener('mousedown', function(event) {
@@ -171,8 +171,8 @@ function initSlider(slider) {
   });
 }
 
-const sliders = document.querySelectorAll('.timepicker');
-sliders.forEach(timepicker => {
+const timepickers = document.querySelectorAll('.timepicker');
+timepickers.forEach(timepicker => {
   initSlider(timepicker);
 
 
@@ -196,7 +196,7 @@ sliders.forEach(timepicker => {
     const [maxHours, maxMinutes] = maxTime.split(':').map(val => parseInt(val));
     const step = parseInt(timepicker.getAttribute('data-step')) || 15;
 
-    updateHandlePosition(timepicker, calculateHandlePosition(timepicker, minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
+    updateHandlePosition(timepicker, calculateHandlePosition(minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
   })
 
 });

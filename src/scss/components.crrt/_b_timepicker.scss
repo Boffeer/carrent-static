@@ -9,11 +9,11 @@
 
   background-color: var(--bg-app);
   border-radius: 1.36em;
-  padding: 2.547em 1em;
+  padding: 0 1em;
   padding-right: 1.4em;
 
   @media (max-width: $tablet) {
-    padding: 1.447em 1em;
+    padding: 0 1em;
     padding-right: 1.4em;
   }
 }
@@ -21,22 +21,28 @@
 .timepicker__control {
   position: relative;
   width: 70%;
-  height: 100%;
+  height: 2em;
+  padding-top: 2.547em;
+  padding-bottom: 2.547em;
+  box-sizing: content-box;
 
   @media (max-width: $mobile) {
+    padding-top: 1.447em;
+    padding-bottom: 1.447em;
     width: 60%;
   }
 }
 
 .timepicker__lines {
   position: absolute;
-  bottom: 0;
-  left: 1em;
+  bottom: 2.2em;
+  left: 0.2em;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 0.4em;
   border-bottom: 0.1em solid var(--fg-caption);
+  pointer-events: none;
 }
 
 .timepicker__lines-dash {
@@ -44,6 +50,7 @@
   width: 0.1em;
   height: 100%;
   background-color: var(--fg-caption);
+  pointer-events: none;
 }
 
 
@@ -54,9 +61,10 @@
   border-radius: 2em;
   background: var(--c-secondary);
   position: absolute;
-  bottom: -0.6em;
+  bottom: 1.6em;
   left: 0;
   z-index: 2;
+  pointer-events: none;
 }
 
 .timepicker__value {
@@ -77,7 +85,7 @@
 .timepicker__min,
 .timepicker__max {
   position: absolute;
-  top: -1em;
+  top: 1em;
   color: #000;
   font-size: 1.3em;
   pointer-events: none;
@@ -92,7 +100,8 @@
 }
 
 .timepicker__min {
-  left: 0.7em;
+  //left: 0.7em;
+  left: 0;
 }
 .timepicker__max {
   right: -0.7em;

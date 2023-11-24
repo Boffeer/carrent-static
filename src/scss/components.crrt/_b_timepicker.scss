@@ -104,7 +104,8 @@
   left: 0;
 }
 .timepicker__max {
-  right: -0.7em;
+  //right: -0.7em;
+  right: 0;
 
   @media (max-width: $tablet) {
     right: -1.4em;

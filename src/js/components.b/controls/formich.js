@@ -89,7 +89,11 @@ formsList.forEach((form) => {
     const serealizedForm = serealizeForm(form);
     const formData = getFormData(serealizedForm);
 
-    let response = await fetch(form.dataset.action, {
+    if (form.dataset.action) {
+      formData.append('action', form.dataset.action);
+    }
+
+    let response = await fetch(form.dataset.route, {
       method: "POST",
       body: formData,
     });
@@ -98,7 +102,8 @@ formsList.forEach((form) => {
     submitButton.classList.add('button--wait');
 
     try {
-      // let result = await response.json();
+      let result = await response.json();
+      // console.log(result)
 
       // if (result.status) {
       //   console.error(result.status);
@@ -114,7 +119,11 @@ formsList.forEach((form) => {
         buttonTextElement = submitButton;
       }
       buttonText = buttonTextElement.innerText;
-      buttonTextElement.innerText = '✓ Ваша заявка принята';
+
+      if(submitButton.dataset.textSuccess) {
+        buttonTextElement.innerText = submitButton.dataset.textSuccess;
+        // buttonTextElement.innerText = '✓ Ваша заявка принята';
+      }
 
       resetForm(form)
 
@@ -135,6 +144,10 @@ formsList.forEach((form) => {
     }
 
   });
+
+  form.addEventListener("submit-success", async (event) => {
+    // console.log('success', event)
+  })
 });
 
 function resetForm (form) {

@@ -19,8 +19,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		rangeInit: 'js_rangepicker-init',
 	}
 
-	rangepickers.forEach(rangepicker => {
-		const pickerLang = rangepicker.parentElement.getAttribute('data-lang') || 'en';
+
+  function formatDateToDisplay(date, datepicker = null) {
+    const currentDate = new Date(date);
+    const options = { day: 'numeric', month: 'long' };
+
+    let locale = 'en';
+    if (datepicker) {
+      locale = datepicker.datepicker._options.language;
+    }
+
+    const formattedDate = currentDate.toLocaleDateString(locale, options);
+
+    if (datepicker) {
+      const display = datepicker.closest('.b_datepicker').querySelector('.b_datepicker__display')
+      if (display) {
+        display.innerText = formattedDate;
+      }
+    }
+
+    return formattedDate
+  }
+
+  function formatDateToValue(date, datepicker = null) {
+    const currentDate = new Date(date);
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1; // Считается с 0, поэтому добавляем 1
+    const year = currentDate.getFullYear();
+    const formattedDate = `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+
+    return formattedDate;
+  }
+
+  rangepickers.forEach(rangepicker => {
+    const pickerLang = rangepicker.parentElement.getAttribute('data-lang') || 'en';
 		const today = new Date().getTime();
 
 		let rangepickerConfig = {
@@ -29,19 +61,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			locale: locales[pickerLang],
 			minDate: today,
 			// orientation: 'top',
+      format: {
+        toValue(date, format, locale) {
+        },
+        toDisplay(date, format, locale) {
+          return formatDateToValue(date);
+        },
+      },
 		}
 
 		const isMobile = () => (window.innerWidth <= window.media.tablet)
 
 		const vanillaRangepicker = new DateRangePicker(rangepicker, rangepickerConfig)
 
-		const datePickerFrom = vanillaRangepicker.inputs[0] 
+		const datePickerFrom = vanillaRangepicker.inputs[0]
 
 		datePickerFrom.addEventListener('show', () => {
 			if (isMobile()) return
 			vanillaRangepicker.datepickers[1].show();
 		})
 		datePickerFrom.addEventListener('changeDate', () => {
+      formatDateToDisplay(vanillaRangepicker.datepickers[0].dates[0], datePickerFrom);
 			setTimeout(() => {
 				if (isMobile()) {
 					vanillaRangepicker.datepickers[0].hide();
@@ -92,25 +132,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			})
 		})
 		datePickerTo.addEventListener('changeDate', () => {
+      formatDateToDisplay(vanillaRangepicker.datepickers[1].dates[0], datePickerTo);
 			setTimeout(() => {
 				vanillaRangepicker.datepickers[1].hide();
 			})
 		})
 
-		rangepicker.classList.add(CLASSES.rangeInite)
+		rangepicker.classList.add(CLASSES.rangeInit)
 	});
 
 
 		datepickers.forEach(datepicker => {
 			const rangepicker = datepicker.closest('.b_rangepicker');
 			if (rangepicker) {
-				if(rangepicker.classList.contains(CLASSES.rangeInite)) return;
+				if(rangepicker.classList.contains(CLASSES.rangeInit)) return;
 			}
 
 			const pickerLang = datepicker.getAttribute('data-lang') || 'en';
 			const today = new Date().getTime();
 
-			let datepickerInput = datepicker.querySelector('.input__field');
+      let datepickerInput = datepicker.querySelector('.input__field');
 			if (datepicker.classList.contains('b_datepicker--calendar')) {
 				datepickerInput = datepicker;
 			}
@@ -136,9 +177,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			        },
 			    },
 			    */
-			}); 	
+			});
 			// console.log(vanillaDatepicker.setDate(today))
-			
+
 
 			// calendar.addEventListener('changeDate', () => {
 			// 	datepicker.hide();

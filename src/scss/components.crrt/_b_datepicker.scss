@@ -1,6 +1,23 @@
 .b_datepicker {
 	position: relative;
 }
+
+.b_datepicker__display {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  padding: var(--padding);
+  font-size: inherit;
+  color: var(--fg);
+}
+
+.b_datepicker .input__field {
+  color: transparent;
+}
+
 .b_datepicker:not(.b_datepicker--calendar)::after {
 	content: "";
 	position: absolute;
@@ -25,6 +42,7 @@
     // max-width: 19.45em;
 	width: 160%;
 	font-size: 1rem;
+  --cell-fg: var(--fg-regular);
 }
 .datepicker-inline {
 	width: 100%;
@@ -128,7 +146,7 @@
 	height: 3.25em;
 	font-size: 1.8em;
     // opacity: 0.4;
-    color: var(--fg);
+    color: var(--cell-fg);
 
     @media (max-width: $tablet) {
 		height: 2.25em;
@@ -142,7 +160,7 @@
 	background: transparent;
 }
 .datepicker-cell.today:not(.selected):not(.disabled) {
-	color: var(--fg);
+	color: var(--cell-fg);
 }
 .datepicker-cell.focused:not(.selected) {
 

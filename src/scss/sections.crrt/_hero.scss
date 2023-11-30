@@ -152,11 +152,13 @@
 
 .hero-gallery__swiper {
 	position: static;
+  height: 100%;
 }
 
 .hero-gallery__slide {
 	position: relative;
-	height: 60em;
+	//height: 60em;
+  height: 100%;
 
 	@media (max-width: $tablet) {
 		height: initial;

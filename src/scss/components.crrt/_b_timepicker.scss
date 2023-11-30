@@ -91,10 +91,10 @@
   pointer-events: none;
 
   @media (max-width: $tablet) {
-    top: -0.5em;
+    //top: -0.5em;
   }
   @media (max-width: $mobile) {
-    top: -1em;
+    //top: -1em;
     font-size: 0.7em;
   }
 }

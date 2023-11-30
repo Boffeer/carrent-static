@@ -1552,6 +1552,11 @@ body._lock {
   white-space: nowrap;
 }
 
+.section__buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .bayan {
   overflow: hidden;
   transition: all 0.4s;
@@ -3480,16 +3485,9 @@ body._lock {
   font-size: 1.3em;
   pointer-events: none;
 }
-@media (max-width: 991px) {
-  .timepicker__min,
-  .timepicker__max {
-    top: -0.5em;
-  }
-}
 @media (max-width: 575px) {
   .timepicker__min,
   .timepicker__max {
-    top: -1em;
     font-size: 0.7em;
   }
 }
@@ -4717,11 +4715,12 @@ body:not(._lock) .header--hidden {
 
 .hero-gallery__swiper {
   position: static;
+  height: 100%;
 }
 
 .hero-gallery__slide {
   position: relative;
-  height: 60em;
+  height: 100%;
 }
 @media (max-width: 991px) {
   .hero-gallery__slide {
@@ -4973,7 +4972,7 @@ body:not(._lock) .header--hidden {
 }
 
 .faq__socials {
-  --icon-color: var(--c-primary);
+  --icon-color: var(--c-secondary);
   --link-padding: 1.4em;
   --icon-gap: 2.3em;
 }
@@ -5910,6 +5909,7 @@ body:not(._lock) .header--hidden {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .reviews-card__user-name {
@@ -5983,7 +5983,7 @@ body:not(._lock) .header--hidden {
   }
 }
 
-.reviews-card__pic {
+.reviews-card__media-pic {
   position: absolute;
   left: 0;
   top: 0;
@@ -5992,8 +5992,11 @@ body:not(._lock) .header--hidden {
   z-index: 2;
 }
 
-.reviews-card__img {
+.reviews-card__media-img {
   object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .reviews-card__video {
@@ -6028,6 +6031,7 @@ body:not(._lock) .header--hidden {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4.7em;
+  transition: all 0.3s ease;
 }
 
 .reviews-carousel__buttons {

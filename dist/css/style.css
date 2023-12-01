@@ -3973,6 +3973,14 @@ body._lock {
   --brad: 3em;
   background: var(--bg-card);
   border-radius: var(--brad);
+  padding-bottom: 5.7em;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 991px) {
+  .car-card {
+    padding-bottom: 2em;
+  }
 }
 
 .car-card__media {
@@ -4077,14 +4085,16 @@ body._lock {
 .car-card__body {
   padding-left: 6em;
   padding-right: 6em;
-  padding-bottom: 5.7em;
 }
 @media (max-width: 991px) {
   .car-card__body {
     padding-left: 1.5em;
     padding-right: 1.5em;
-    padding-bottom: 2em;
   }
+}
+
+.car-card__body:last-child {
+  margin-top: auto;
 }
 
 .car-card__bullets {

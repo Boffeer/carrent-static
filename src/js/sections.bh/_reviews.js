@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
-  const changeCarouselHeight = (carousel, modifier = 0) => {
+  const changeCarouselHeight = (carousel, modifier = 0, ignoreScroll = true) => {
     let currentSlides = [
       carousel.el.querySelector('.swiper-slide-active'),
       carousel.el.querySelector('.swiper-slide-next'),
@@ -44,6 +44,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const maxHeight = Math.max(...currentSlides.map(slide => slide.querySelector('.reviews-card').getBoundingClientRect().height));
     carousel.el.style.maxHeight = `${maxHeight + modifier}px`;
 
+    if (ignoreScroll) return;
+
     window.scroll({
       top: carousel.el.closest('.section').getBoundingClientRect().top + pageYOffset,
       left: 0,
@@ -52,7 +54,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   reviews.on('slideChangeTransitionEnd', () => {
-    changeCarouselHeight(reviews);
+    changeCarouselHeight(reviews, 0, false);
   })
   window.addEventListener('resize', () => {
     changeCarouselHeight(reviews);

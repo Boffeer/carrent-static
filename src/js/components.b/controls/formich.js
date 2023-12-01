@@ -99,10 +99,13 @@ formsList.forEach((form) => {
     });
 
     const submitButton = form.querySelector('.js_form__submit');
-    submitButton.classList.add('button--wait');
+    if (!form.classList.contains('js_form--no-lock-button')) {
+      submitButton.classList.add('button--wait');
+    }
 
     try {
-      let result = await response.json();
+      // let result = await response.json();
+      let result = await response.text();
       // console.log(result)
 
       // if (result.status) {
@@ -110,8 +113,8 @@ formsList.forEach((form) => {
       // }
 
       let buttonText;
-      let buttonTextElement
-      let submitButtonText = submitButton.querySelector('.button__text')
+      let buttonTextElement;
+      let submitButtonText = submitButton.querySelector('.button__text');
 
       if (submitButtonText) {
         buttonTextElement = submitButtonText;
@@ -120,27 +123,36 @@ formsList.forEach((form) => {
       }
       buttonText = buttonTextElement.innerText;
 
-      if(submitButton.dataset.textSuccess) {
-        buttonTextElement.innerText = submitButton.dataset.textSuccess;
-        // buttonTextElement.innerText = '✓ Ваша заявка принята';
+      if (form.classList.contains('js_form--no-lock-button')) {
+        if(submitButton.dataset.textSuccess) {
+          buttonTextElement.innerText = submitButton.dataset.textSuccess;
+          // buttonTextElement.innerText = '✓ Ваша заявка принята';
+        }
       }
 
-      resetForm(form)
+      if (!form.classList.contains('js_form--no-reset')) {
+        resetForm(form)
+      }
 
       const submitSuccess = new CustomEvent('submit-success', {
         detail: {
           form,
+          result,
         },
         bubbles: true, // Allow event to bubble up the DOM tree
         cancelable: true // Allow event to be canceled
       });
       form.dispatchEvent(submitSuccess);
 
-      setTimeout(() => {
-        submitButton.classList.remove('button--wait');
-        buttonTextElement.innerText = buttonText;
-      }, 5000)
-    } catch {
+      if (!form.classList.contains('js_form--no-lock-button')) {
+        setTimeout(() => {
+          submitButton.classList.remove('button--wait');
+          buttonTextElement.innerText = buttonText;
+        }, 5000)
+      }
+
+    } catch(error) {
+      console.log(error)
     }
 
   });

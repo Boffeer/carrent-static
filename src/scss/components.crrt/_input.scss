@@ -1,5 +1,8 @@
  @import "../components.b/controls/input";
 
+ .input--double {
+    grid-column: span 2;
+ }
  .input {
   font-size: 1.4rem;
   --bg: #FBFBFB;
@@ -11,7 +14,7 @@
   --border-color: var(--bg);
   --border-width: 0.1rem;
   --border-radius: 1.36em;
-  
+
   --fz: 1em;
   --fw: 300;
   --lh: initial;

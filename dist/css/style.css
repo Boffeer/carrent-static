@@ -3152,6 +3152,10 @@ body._lock {
   max-height: 10rem;
 }
 
+.input--double {
+  grid-column: span 2;
+}
+
 .input {
   font-size: 1.4rem;
   --bg: #FBFBFB;
@@ -3464,7 +3468,7 @@ body._lock {
 
 .timepicker__value {
   width: 20%;
-  font-size: 1.6em;
+  font-size: 1.3em;
   color: var(--fg-regular);
   background: transparent;
   text-align: right;
@@ -5611,6 +5615,17 @@ body:not(._lock) .header--hidden {
   font-size: 1.33333em;
 }
 
+.product-hero__info-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 4em;
+}
+
+.product-hero__bookform-head {
+  margin-bottom: 0;
+}
+
 .article {
   --padding-inline: 10rem;
   padding-top: 3rem;
@@ -6130,6 +6145,16 @@ body:not(._lock) .header--hidden {
 .reviews-carousel__scrollbar .swiper-scrollbar-drag {
   background: var(--c-secondary);
   border-radius: 0;
+}
+
+.success {
+  background: none;
+}
+
+@media (min-width: 992px) {
+  .success .faq__content {
+    grid-template-columns: auto 70%;
+  }
 }
 
 .is-hidden {

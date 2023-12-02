@@ -32,6 +32,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 
   const changeCarouselHeight = (carousel, modifier = 0, ignoreScroll = true) => {
+    if (!carousel.el.querySelector) return;
     let currentSlides = [
       carousel.el.querySelector('.swiper-slide-active'),
       carousel.el.querySelector('.swiper-slide-next'),

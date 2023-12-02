@@ -234,7 +234,7 @@
 		font-size: 2rem;
 		grid-column: initial;
 		margin-bottom: 1.3em;
-		
+
 	}
 }
 
@@ -369,7 +369,7 @@
 
 .product-hero__bookform-caption .link {
 	--fz: 1em;
-}	
+}
 
 .product-hero__content {
 	// padding-top: 6.5em;
@@ -423,4 +423,15 @@
 
 .product-hero__options-content {
 	font-size: 1.33333em;
+}
+
+.product-hero__info-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 4em;
+}
+
+.product-hero__bookform-head {
+  margin-bottom: 0;
 }

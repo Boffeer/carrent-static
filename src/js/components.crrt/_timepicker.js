@@ -183,6 +183,22 @@ timepickers.forEach(timepicker => {
   };
   new Inputmask(maskOptions).mask(timepickerValue);
 
+  function updateHandler() {
+    let [currentHours, currentMinutes] = timepickerValue.value.split(':').map(val=> val)
+    if (timepickerValue.value.includes('_')) return;
+    const timepicker = timepickerValue.closest('.timepicker');
+
+    const minTime = timepicker.getAttribute('data-min');
+    const maxTime = timepicker.getAttribute('data-max');
+    const [minHours, minMinutes] = minTime.split(':').map(val => parseInt(val));
+    const [maxHours, maxMinutes] = maxTime.split(':').map(val => parseInt(val));
+    const step = parseInt(timepicker.getAttribute('data-step')) || 15;
+
+    updateHandlePosition(timepicker, calculateHandlePosition(minHours, minMinutes, maxHours, maxMinutes, currentHours, currentMinutes));
+  }
+  timepickerValue.updateHandler = updateHandler
+  timepicker.updateHandler = updateHandler
+
   timepickerValue.addEventListener('input', (e) => {
     e.stopPropagation();
     let value = e.target.value;

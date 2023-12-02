@@ -161,6 +161,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 				locale: locales[pickerLang],
 				defaultViewDate: today,
 				minDate: today,
+        datesDisabled: ["08-12-2023"],
 				// format: 'dd.mm.yyyy',
 
 				/*

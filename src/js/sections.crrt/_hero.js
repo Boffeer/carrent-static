@@ -1,4 +1,5 @@
 import Swiper, { Navigation, Pagination, EffectCreative } from "swiper";
+import {debounce} from "../helpers.b/condition-helpers.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
 	const hero = document.querySelector('.hero');
@@ -45,6 +46,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const card = document.createElement('article');
     card.classList.add('js_created', 'car-card');
     card.dataset.id = car.id;
+
+    car.url = `${car.url}?date_start=${car.search_start}&date_end=${car.search_end}`
 
     let carHtml = `
         <div class="car-card__media">
@@ -130,18 +133,57 @@ window.addEventListener('DOMContentLoaded', (event) => {
     return card;
   }
 
+  /*
+  const dateStart = searchForm.querySelector('input[name="date_start"]')
+  const dateEnd = searchForm.querySelector('input[name="date_end"]')
+  const timeStart = searchForm.querySelector('input[name="time_start"]')
+  const timeEnd = searchForm.querySelector('input[name="time_end"]')
+
+  async function fetchFreeCars() {
+    const formData = new FormData();
+    formData.append('action', searchForm.dataset.action);
+    formData.append('date_start', dateStart.value);
+    formData.append('date_end', dateEnd.value);
+    formData.append('time_start', timeStart.value);
+    formData.append('time_end', timeEnd.value);
+
+    let response = await fetch(searchForm.dataset.route, {
+      method: "POST",
+      body: formData,
+    });
+
+    let result = await response.text();
+    console.log(result)
+  }
+
+  const debouncedFetchFreeCars = debounce(fetchFreeCars, 300);
+
+  dateEnd.addEventListener('input', (e) => {
+    debouncedFetchFreeCars();
+  })
+
+   */
+
+
   const carsShelf = document.querySelector('#cars .shelf__content')
   searchForm.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
+    console.log(carsShelf)
     carsShelf.innerHTML = '';
 
-    window.localStorage.setItem('search_start', result.search_start);
-    window.localStorage.setItem('search_end', result.search_end);
-
     result.cars.forEach(car => {
+      car.search_start = result.search_start;
+      car.search_end = result.search_end;
       const card = getCarCard(car);
       carsShelf.append(card)
     })
+
+    if (result.cars.length === 0) {
+      const message = document.createElement('p');
+      message.innerText = result.messages.empty
+      message.classList.add('text-center', 'shelf__message');
+      carsShelf.append(message)
+    }
 
     window.scroll({
       top: document.querySelector('#cars').getBoundingClientRect().top + pageYOffset,

@@ -8,7 +8,9 @@ import "./libs/masonry.pkgd.min.js";
 import "./components.b/groupers/_bayan.js";
 import "./components.b/controls/_select.js";
 
-import "./components.crrt/_datepicker.js";
+import "./sections.crrt/_single-cars.js";
+// import "./components.crrt/_datepicker.js";
+import "./components.crrt/_flatpicker.js";
 import "./components.crrt/_timepicker.js";
 
 import "./components.b/header/header.js";
@@ -34,7 +36,6 @@ import "./components.b/lego/wysiwyg.js";
 // import "./sections.sklh/_content-reviews.js";
 
 import "./sections.crrt/_hero.js";
-import "./sections.crrt/_single-cars.js";
 
 import "./sections.bh/_reviews.js";
 

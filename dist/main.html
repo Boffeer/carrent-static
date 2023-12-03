@@ -40,9 +40,9 @@
 
 
 
-      <link rel="stylesheet" href="./css/style.css?_v=20231202101223">
+      <link rel="stylesheet" href="./css/style.css?_v=20231203180155">
   </head>
-  
+
   <body class="page-home">
 
     <div class="wrapper">
@@ -136,7 +136,7 @@
           <div class="hero__container container">
             <div class="hero__offer">
               <h2 class="section-title hero__title">
-                Прокат автомобилей на&nbsp;Мадейре 
+                Прокат автомобилей на&nbsp;Мадейре
                 <strong>от 40€ в сутки</strong>
               </h2>
               <div class="bookform hero__bookform">
@@ -198,26 +198,15 @@
     name="user_birthday"
     type="text"
     
-      placeholder="Start date"
+      placeholder="Dates"
     
     readonly
     required
   >
 </label>
 
-                    <label class="input b_datepicker js_form__control" data-lang="ru">
-  
-  <input
-    class="input__field"
-    name="user_birthday"
-    type="text"
-    
-      placeholder="End date"
-    
-    readonly
-    required
-  >
-</label>
+                    <input type="text" calss="is-hidden" name="date_start" hidden>
+                    <input type="text" calss="is-hidden" name="date_end" hidden>
 
                   </div>
                   <div class="timepicker hero__bookform-timepicker"
@@ -407,7 +396,7 @@
         <section class="shelf section" id="cars">
           <div class="shelf__container container">
             <h2 class="section-title shelf__title">
-              Выберите свой <br>автомобиль 
+              Выберите свой <br>автомобиль
             </h2>
             <div class="shelf__content">
               <article class="car-card">
@@ -849,7 +838,7 @@
               </div>
               <!-- <div class="swiper-pagination reviews-carousel__pagination"></div> -->
               <div class="swiper-scrollbar reviews-carousel__scrollbar"></div>
-            
+
               <div class="swiper-buttons reviews-carousel__buttons">
                 <div class="swiper-button-prev reviews-carousel__button-prev"></div>
                 <div class="swiper-button-next reviews-carousel__button-next"></div>
@@ -1181,6 +1170,6 @@
 
     
 
-    <script src="./js/index.min.js?_v=20231202101223"></script>
+    <script src="./js/index.min.js?_v=20231203180155"></script>
   </body>
 </html>

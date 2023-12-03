@@ -15,6 +15,13 @@
 	}
 }
 
+.shelf__message {
+  font-size: 1.8em;
+  @media (min-width: $tablet + 1) {
+    grid-column: span 3;
+  }
+}
+
 .shelf__buttons {
 	display: flex;
 	justify-content: center;

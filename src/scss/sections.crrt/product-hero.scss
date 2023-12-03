@@ -11,6 +11,7 @@
 .product-hero__container {
 	display: grid;
 	grid-template-columns: 7fr 5fr;
+  grid-template-rows: auto 1fr;
 	align-items: start;
 	column-gap: 2rem;
 	width: 100%;
@@ -348,8 +349,9 @@
 	}
 }
 
-.product-hero__bookform-button {
+.product-hero__bookform-submit {
 	grid-column: span 2;
+  width: 100%;
 }
 
 .product-hero__bookform-caption {

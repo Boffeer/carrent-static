@@ -8,7 +8,7 @@
       })
       <link rel="stylesheet" href="./css/style.css">
   </head>
-  
+
   <body class="page-home">
 
     <div class="wrapper">
@@ -20,15 +20,17 @@
           <div class="hero__container container">
             <div class="hero__offer">
               <h2 class="section-title hero__title">
-                Прокат автомобилей на&nbsp;Мадейре 
+                Прокат автомобилей на&nbsp;Мадейре
                 <strong>от 40€ в сутки</strong>
               </h2>
               <div class="bookform hero__bookform">
                   @@include('./tpls/input/select.html', {className: 'hero__bookform-select', placeholder: 'Pick-up location'})
                   @@include('./tpls/input/select.html', {className: 'hero__bookform-select', placeholder: 'Drop-off location'})
                   <div class="hero__bookform-range b_rangepicker" data-lang="ru">
-                    @@include('./tpls/input/datepicker.html', {placeholder: 'Start date'})
-                    @@include('./tpls/input/datepicker.html', {placeholder: 'End date'})
+                    @@include('./tpls/input/datepicker.html', {placeholder: 'Dates'})
+                    <input type="text" calss="is-hidden" name="date_start" hidden>
+                    <input type="text" calss="is-hidden" name="date_end" hidden>
+<!--                    @@include('./tpls/input/datepicker.html', {placeholder: 'End date'})-->
                   </div>
                   <div class="timepicker hero__bookform-timepicker"
                        data-min="08:00"
@@ -119,7 +121,7 @@
         <section class="shelf section" id="cars">
           <div class="shelf__container container">
             <h2 class="section-title shelf__title">
-              Выберите свой <br>автомобиль 
+              Выберите свой <br>автомобиль
             </h2>
             <div class="shelf__content">
               @@include('tpls/components.crrt/car-card.html',{})
@@ -171,7 +173,7 @@
               </div>
               <!-- <div class="swiper-pagination reviews-carousel__pagination"></div> -->
               <div class="swiper-scrollbar reviews-carousel__scrollbar"></div>
-            
+
               <div class="swiper-buttons reviews-carousel__buttons">
                 <div class="swiper-button-prev reviews-carousel__button-prev"></div>
                 <div class="swiper-button-next reviews-carousel__button-next"></div>

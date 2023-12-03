@@ -1,79 +1,61 @@
-window.addEventListener("DOMContentLoaded", async (event) => {
-  let searchStart = window.localStorage.getItem('search_start');
-  let searchEnd = window.localStorage.getItem('search_end');
+window.addEventListener("DOMContentLoaded", (event) => {
+
+  function setTimepickerValues(bookForm) {
+    if (!bookForm) return;
+
+    const url = window.location.href;
+    const decodedUrl = decodeURIComponent(url);
+    const urlSearchParams = new URLSearchParams(decodedUrl.split('?')[1]);
+
+    const searchStart = urlSearchParams.get('date_start');
+    const searchEnd = urlSearchParams.get('date_end');
 
 
-  let dateSart = '';
-  let timeSart = '';
-  if (searchStart) {
-    [dateSart, timeSart] = searchStart.split(' ');
-  }
+    let dateStart = '';
+    let timeStart = '';
+    if (searchStart) {
+      [dateSart, timeStart] = searchStart.split(' ');
+    }
 
-  let dateEnd = '';
-  let timeEnd = '';
-  if (searchEnd) {
-    [dateEnd, timeEnd] = searchStart.split(' ');
-  }
+    let dateEnd = '';
+    let timeEnd = '';
+    if (searchEnd) {
+      [dateEnd, timeEnd] = searchEnd.split(' ');
+    }
 
-  setTimeout(() => {
     const inputTimeStart = document.querySelector('input[name="time_start"]');
     const inputTimeEnd = document.querySelector('input[name="time_end"]');
 
     if (!inputTimeStart || !inputTimeEnd) return;
 
-    inputTimeStart.value = timeSart;
-    inputTimeEnd.value = timeSart;
+    inputTimeStart.value = timeStart;
+    inputTimeEnd.value = timeEnd;
 
     inputTimeStart.updateHandler()
     inputTimeEnd.updateHandler()
 
-    inputTimeStart.inputmask._setValue(timeSart);
-    inputTimeEnd.inputmask._setValue(timeEnd);
+    changeTimepickerValue();
 
-  }, 500)
-
-  async function getBooking() {
-    const formData = new FormData;
-    formData.append('action', 'get_car_bookings');
-    formData.append('id', document.querySelector('.product-hero').dataset.id);
-
-    const request = await fetch(window.m_ajax.url, {
-      method: 'POST',
-      body: formData,
-    })
-    const response = await request.json();
-    console.log(response)
+    function changeTimepickerValue() {
+      if (!inputTimeStart.inputmask && !inputTimeEnd.inputmask) {
+        setTimeout(() => {
+          changeTimepickerValue()
+        }, 100)
+        return;
+      }
+      if (!inputTimeStart.inputmask.isComplete && !inputTimeEnd.inputmask.isComplete) {
+        setTimeout(() => {
+          changeTimepickerValue()
+        }, 100)
+        return;
+      }
+      inputTimeStart.inputmask._valueSet(timeSart);
+      inputTimeEnd.inputmask._valueSet(timeEnd);
+    }
   }
-  getBooking();
-
-
-  // let activeBooksings = response.active_bookings.map.map(book => {
-  //   return {
-  //     start: book.start_date,
-  //     end: book.end_date,
-  //   }
-  // })
-  async function getStripe() {
-    const stripeFormData = new FormData;
-    stripeFormData.append('action', 'get_stripe_paylink');
-    stripeFormData.append('post_id', document.querySelector('.product-hero').dataset.id);
-    stripeFormData.append('date_start', window.localStorage.getItem('search_start'));
-    stripeFormData.append('date_end', window.localStorage.getItem('search_end'));
-
-    const request = await fetch(window.m_ajax.url, {
-      method: 'POST',
-      body: stripeFormData,
-    })
-    const response = await request.json();
-
-    document.querySelector('.product-hero__bookform-button').href = response.paylink;
-    console.log(response)
-  }
-
-  getStripe();
-
 
   const bookForm = document.querySelector('.product-hero__bookform')
+  setTimepickerValues(bookForm)
   bookForm?.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
 

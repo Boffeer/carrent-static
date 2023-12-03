@@ -111,6 +111,7 @@ body._lock {
 // Библиотеки
 @import "./libs/vanilla-datepicker";
 @import "./libs/swiper";
+@import "./libs/flatpickr.min";
 // @import "./libs/fancybox";
 
 
@@ -133,6 +134,9 @@ body._lock {
 
 .text-bold {
   font-weight: 700;
+}
+.text-center {
+  text-align: center;
 }
 .text-colored {
   color: var(--c-primary);

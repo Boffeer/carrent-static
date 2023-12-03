@@ -175,7 +175,6 @@ const timepickers = document.querySelectorAll('.timepicker');
 timepickers.forEach(timepicker => {
   initSlider(timepicker);
 
-
   const timepickerValue = timepicker.querySelector('.timepicker__value');
   const maskOptions = {
     mask: '99:99',

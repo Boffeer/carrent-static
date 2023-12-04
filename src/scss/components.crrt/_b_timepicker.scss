@@ -26,6 +26,10 @@
   padding-bottom: 2.547em;
   box-sizing: content-box;
 
+  @media (max-width: $tablet) {
+    padding-top: 1.547em;
+    padding-bottom: 1.547em;
+  }
   @media (max-width: $mobile) {
     padding-top: 1.447em;
     padding-bottom: 1.447em;
@@ -43,6 +47,10 @@
   height: 0.4em;
   border-bottom: 0.1em solid var(--fg-caption);
   pointer-events: none;
+
+  @media (max-width: $tablet) and (min-width: $mobile + 1) {
+    bottom: 1.8em;
+  }
 }
 
 .timepicker__lines-dash {
@@ -65,6 +73,10 @@
   left: 0;
   z-index: 2;
   pointer-events: none;
+
+  @media (max-width: $tablet) and (min-width: $mobile + 1) {
+    bottom: 1.2em;
+  }
 }
 
 .timepicker__value {
@@ -93,9 +105,11 @@
 
   @media (max-width: $tablet) {
     //top: -0.5em;
+    top: 0.8em;
   }
   @media (max-width: $mobile) {
     //top: -1em;
+    top: 1em;
     font-size: 0.7em;
   }
 }

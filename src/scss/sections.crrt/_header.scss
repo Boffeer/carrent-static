@@ -70,6 +70,7 @@ body:not(._lock) .header--hidden {
   font-weight: 700;
   position: relative;
   z-index: 3;
+  white-space: nowrap;
 
   @media (max-width: $tablet) {
     margin-right: 3rem;
@@ -86,6 +87,10 @@ body:not(._lock) .header--hidden {
   align-items: center;
   justify-content: flex-start;
   transition: all 0.5s var(--tr-jolly-enter);
+
+  @media (max-width: $tablet) {
+    align-items: flex-start;
+  }
 
 /*
   @media (max-width: $mobile) {

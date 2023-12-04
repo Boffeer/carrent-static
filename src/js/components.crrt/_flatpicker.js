@@ -13,7 +13,7 @@ import {getNumberDate} from "../helpers.b/dates-helpers.js";
 
 const locales = {
   'ru': Russian,
-  'pg': Portuguese,
+  'pt': Portuguese,
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -71,6 +71,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           dateEnd.value = getNumberDate(selectedDates[1]);
           dateEnd.dispatchEvent(evt);
         }
+        console.log(dateStart.value)
+        console.log(dateEnd.value)
       },
     }
     if (rangepicker.classList.contains('b_rangepicker--inline')) {
@@ -78,7 +80,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     let currentLocale = rangepicker.dataset.lang;
-    if (currentLocale) {
+    if (currentLocale && currentLocale != 'en') {
       config['locale'] = locales[currentLocale];
     }
 
@@ -86,7 +88,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (defaultDate) {
       config['defaultDate'] = rangepicker.dataset.defaultDate.split(',');
     }
-    console.log(config)
 
 
     const datepickerInstance = flatpickr(input, config);

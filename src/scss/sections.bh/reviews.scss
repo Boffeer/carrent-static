@@ -60,7 +60,8 @@
 	font-size: 1.5em;
 	line-height: 131.4%;
 	@media (max-width: $tablet) {
-		font-size: 1.2em;
+		font-size: 1.5em;
+    margin-bottom: 1em;
 	}
 }
 
@@ -97,22 +98,10 @@
 
 .reviews-card__media {
 	position: relative;
-	min-height: 18em;//324px;
 	box-shadow: 0px 4px 20px rgba(206, 206, 206, 0.25);
 	border-radius: 0.5555555555555556em;//10px;
 	overflow: hidden;
-	@media (max-width: $tablet) {
-		min-height: 18.233em;
-	}
-	@media (max-width: $mobile) {
-		min-height: 23.933333333333334em;
-	}
-	@media (max-width: $mobile-md) {
-		min-height: 20.933333333333334em;
-	}
-	@media (max-width: $mobile-sm) {
-		min-height: 23.933333333333334em;
-	}
+  margin-bottom: 1.5em;
 }
 .reviews-card__media-pic {
 	position: absolute;

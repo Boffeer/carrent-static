@@ -10,7 +10,7 @@
     bottom: 0;
     display: block;
     background: var(--bg-card);
-    padding: 8rem 4rem 3rem;
+    padding: 12rem 4rem 3rem;
     height: 100%;
     width: 100%;
     display: flex;
@@ -74,7 +74,7 @@
   display: block;
 
   @media (max-width: $tablet) {
-    
+
   }
 }
 
@@ -83,7 +83,7 @@
 	color: var(--fg-on);
 }
 
-.menu__nav-item:not(.active) .menu__nav-link:hover {
+.menu__nav-item:not(.active) .menu__nav-link:not(.menu__nav-dropdown-link):hover {
   @media (any-hover:hover) {
     color: var(--c-second);
   }
@@ -117,10 +117,8 @@
 }
 
 .menu__nav-dropdown {
-  background: var(--bg-app);
   transition: all 0.4s var(--tr-jolly-enter);
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 2em;
 
   @media (min-width: $tablet + 1) {
     position: absolute;
@@ -139,6 +137,40 @@
   }
 }
 
+.menu__nav-dropdown-content {
+  position: relative;
+  background: var(--bg-card);
+  padding: 2em;
+  padding-top: 1em;
+  border-radius: 0px 1em 1em 1em;
+
+  @media (max-width: $tablet) {
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.menu__nav-dropdown-content::before {
+  content: "";
+  --size: 2em;
+  position: absolute;
+  top: -0.8em;
+  left: 1.5em;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: calc(var(--size) / 1.5) solid transparent;
+  border-right: calc(var(--size) / 1.5) solid transparent;
+  border-bottom: calc(var(--size) / 2) solid white;
+  border-radius: 0.9em;
+
+  @media (max-width: $tablet) {
+      content: none;
+  }
+}
+
+
 .menu__nav-item--has-children:hover .menu__nav-dropdown {
   transform: translateY(0);
   opacity: 1;
@@ -147,6 +179,15 @@
 
 
 .menu__nav-dropdown-link {
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding: 0.25em 0.7em;
+  white-space: nowrap;
+}
+
+.menu__nav-dropdown-link:hover {
+  @media (any-hover: hover) {
+    font-weight: 700;
+    background-color: var(--c-primary);
+    color: var(--fg-on);
+    border-radius: 9999px;
+  }
 }

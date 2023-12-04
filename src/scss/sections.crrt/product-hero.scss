@@ -311,10 +311,11 @@
 	border-radius: 2em;
 	background: #F7F7F9;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: flex-start;
 
 	@media (max-width: $tablet) {
+    align-items: flex-start;
 		flex-direction: column;
 		padding: 1em 2em;
 	}
@@ -390,6 +391,14 @@
 	@media (max-width: $mobile) {
 	}
 }
+
+html[lang="pt-PT"] .product-hero__stat-list {
+  @media (max-width: $mobile) {
+    grid-template-columns: 100%;
+  }
+}
+
+
 
 .product-hero__stat {
 	font-size: 1.6em;

@@ -73,6 +73,7 @@
 }
 .input__field::placeholder {
   color: var(--fg-placdeholder);
+  color: #b3b4b5;
 }
 .input__field:focus {
   --border-color: var(--border-focus);

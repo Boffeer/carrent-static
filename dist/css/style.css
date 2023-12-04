@@ -3720,7 +3720,7 @@ span.flatpickr-weekday {
     bottom: 0;
     display: block;
     background: var(--bg-card);
-    padding: 8rem 4rem 3rem;
+    padding: 12rem 4rem 3rem;
     height: 100%;
     width: 100%;
     display: flex;
@@ -3777,7 +3777,7 @@ span.flatpickr-weekday {
 }
 
 @media (any-hover: hover) {
-  .menu__nav-item:not(.active) .menu__nav-link:hover {
+  .menu__nav-item:not(.active) .menu__nav-link:not(.menu__nav-dropdown-link):hover {
     color: var(--c-second);
   }
 }
@@ -3810,10 +3810,8 @@ span.flatpickr-weekday {
 }
 
 .menu__nav-dropdown {
-  background: var(--bg-app);
   transition: all 0.4s var(--tr-jolly-enter);
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 2em;
 }
 @media (min-width: 992px) {
   .menu__nav-dropdown {
@@ -3834,6 +3832,41 @@ span.flatpickr-weekday {
   }
 }
 
+.menu__nav-dropdown-content {
+  position: relative;
+  background: var(--bg-card);
+  padding: 2em;
+  padding-top: 1em;
+  border-radius: 0px 1em 1em 1em;
+}
+@media (max-width: 991px) {
+  .menu__nav-dropdown-content {
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.menu__nav-dropdown-content::before {
+  content: "";
+  --size: 2em;
+  position: absolute;
+  top: -0.8em;
+  left: 1.5em;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: calc(var(--size) / 1.5) solid transparent;
+  border-right: calc(var(--size) / 1.5) solid transparent;
+  border-bottom: calc(var(--size) / 2) solid white;
+  border-radius: 0.9em;
+}
+@media (max-width: 991px) {
+  .menu__nav-dropdown-content::before {
+    content: none;
+  }
+}
+
 .menu__nav-item--has-children:hover .menu__nav-dropdown {
   transform: translateY(0);
   opacity: 1;
@@ -3841,8 +3874,17 @@ span.flatpickr-weekday {
 }
 
 .menu__nav-dropdown-link {
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding: 0.25em 0.7em;
+  white-space: nowrap;
+}
+
+@media (any-hover: hover) {
+  .menu__nav-dropdown-link:hover {
+    font-weight: 700;
+    background-color: var(--c-primary);
+    color: var(--fg-on);
+    border-radius: 9999px;
+  }
 }
 
 .input {
@@ -3921,6 +3963,7 @@ span.flatpickr-weekday {
 
 .input__field::placeholder {
   color: var(--fg-placdeholder);
+  color: #b3b4b5;
 }
 
 .input__field:focus {
@@ -3979,6 +4022,7 @@ span.flatpickr-weekday {
   font-size: 1.4rem;
   --bg: #FBFBFB;
   --fg: #4f4f4f;
+  --fg-placeholder: var(--fg-caption);
   --padding-inline: 0.95em;
   --padding-block: 1.85em;
   --padding: var(--padding-block) var(--padding-inline);
@@ -4072,6 +4116,18 @@ span.flatpickr-weekday {
   width: 100%;
   height: 100%;
   max-width: 100%;
+}
+@media (min-width: 1920px) {
+  .flatpickr-calendar .flatpickr-day {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+@media (max-width: 991px) and (min-width: 576px) {
+  .flatpickr-calendar .flatpickr-day {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
 }
 
 .flatpickr-calendar .flatpickr-rContainer {
@@ -4393,6 +4449,12 @@ span.flatpickr-weekday {
   padding-bottom: 2.547em;
   box-sizing: content-box;
 }
+@media (max-width: 991px) {
+  .timepicker__control {
+    padding-top: 1.547em;
+    padding-bottom: 1.547em;
+  }
+}
 @media (max-width: 575px) {
   .timepicker__control {
     padding-top: 1.447em;
@@ -4411,6 +4473,11 @@ span.flatpickr-weekday {
   height: 0.4em;
   border-bottom: 0.1em solid var(--fg-caption);
   pointer-events: none;
+}
+@media (max-width: 991px) and (min-width: 576px) {
+  .timepicker__lines {
+    bottom: 1.8em;
+  }
 }
 
 .timepicker__lines-dash {
@@ -4432,6 +4499,11 @@ span.flatpickr-weekday {
   left: 0;
   z-index: 2;
   pointer-events: none;
+}
+@media (max-width: 991px) and (min-width: 576px) {
+  .timepicker__drag {
+    bottom: 1.2em;
+  }
 }
 
 .timepicker__value {
@@ -4457,9 +4529,16 @@ span.flatpickr-weekday {
   font-size: 1.3em;
   pointer-events: none;
 }
+@media (max-width: 991px) {
+  .timepicker__min,
+  .timepicker__max {
+    top: 0.8em;
+  }
+}
 @media (max-width: 575px) {
   .timepicker__min,
   .timepicker__max {
+    top: 1em;
     font-size: 0.7em;
   }
 }
@@ -5413,6 +5492,7 @@ body:not(._lock) .header--hidden {
   font-weight: 700;
   position: relative;
   z-index: 3;
+  white-space: nowrap;
 }
 @media (max-width: 991px) {
   .header__logo {
@@ -5462,6 +5542,11 @@ body:not(._lock) .header--hidden {
     padding-right: var(--p-container);
   }
   */
+}
+@media (max-width: 991px) {
+  .header__menu {
+    align-items: flex-start;
+  }
 }
 
 .header__contacts {
@@ -5650,12 +5735,6 @@ body:not(._lock) .header--hidden {
   gap: var(--gap);
   grid-column: span 2;
 }
-@media (max-width: 575px) {
-  .hero__bookform-select {
-    grid-column: span 2;
-  }
-}
-
 .hero__bookform-timepicker {
   margin-top: -0.3em;
   position: relative;
@@ -6478,11 +6557,12 @@ body:not(._lock) .header--hidden {
   border-radius: 2em;
   background: #F7F7F9;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 }
 @media (max-width: 991px) {
   .product-hero__bookform-tariff {
+    align-items: flex-start;
     flex-direction: column;
     padding: 1em 2em;
   }
@@ -6556,6 +6636,12 @@ body:not(._lock) .header--hidden {
     line-height: 1.85;
   }
 }
+@media (max-width: 575px) {
+  html[lang=pt-PT] .product-hero__stat-list {
+    grid-template-columns: 100%;
+  }
+}
+
 .product-hero__stat {
   font-size: 1.6em;
 }
@@ -6927,7 +7013,8 @@ body:not(._lock) .header--hidden {
 }
 @media (max-width: 991px) {
   .reviews-card__user-name {
-    font-size: 1.2em;
+    font-size: 1.5em;
+    margin-bottom: 1em;
   }
 }
 
@@ -6965,30 +7052,10 @@ body:not(._lock) .header--hidden {
 
 .reviews-card__media {
   position: relative;
-  min-height: 18em;
   box-shadow: 0px 4px 20px rgba(206, 206, 206, 0.25);
   border-radius: 0.5555555556em;
   overflow: hidden;
-}
-@media (max-width: 991px) {
-  .reviews-card__media {
-    min-height: 18.233em;
-  }
-}
-@media (max-width: 575px) {
-  .reviews-card__media {
-    min-height: 23.9333333333em;
-  }
-}
-@media (max-width: 411px) {
-  .reviews-card__media {
-    min-height: 20.9333333333em;
-  }
-}
-@media (max-width: 392px) {
-  .reviews-card__media {
-    min-height: 23.9333333333em;
-  }
+  margin-bottom: 1.5em;
 }
 
 .reviews-card__media-pic {

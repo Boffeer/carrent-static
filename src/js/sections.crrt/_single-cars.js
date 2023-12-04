@@ -9,12 +9,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     const searchStart = urlSearchParams.get('date_start');
     const searchEnd = urlSearchParams.get('date_end');
+    console.log(searchStart)
+    console.log(searchEnd)
+    if (searchStart == null && searchEnd === null) return;
 
 
     let dateStart = '';
     let timeStart = '';
     if (searchStart) {
-      [dateSart, timeStart] = searchStart.split(' ');
+      [dateStart, timeStart] = searchStart.split(' ');
     }
 
     let dateEnd = '';
@@ -22,6 +25,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (searchEnd) {
       [dateEnd, timeEnd] = searchEnd.split(' ');
     }
+
+    const inputDateStart = document.querySelector('.product-hero__calendar input[name="date_start"]');
+    const inputDateEnd = document.querySelector('.product-hero__calendar input[name="date_end"]');
+    inputDateStart.value = dateStart
+    inputDateEnd.value = dateEnd
 
     const inputTimeStart = document.querySelector('input[name="time_start"]');
     const inputTimeEnd = document.querySelector('input[name="time_end"]');
@@ -49,7 +57,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }, 100)
         return;
       }
-      inputTimeStart.inputmask._valueSet(timeSart);
+      inputTimeStart.inputmask._valueSet(timeStart);
       inputTimeEnd.inputmask._valueSet(timeEnd);
     }
   }
@@ -59,6 +67,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   bookForm?.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
 
+    console.log(result)
     window.location.href = result.paylink
   })
 });

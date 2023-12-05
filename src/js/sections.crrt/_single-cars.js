@@ -1,4 +1,21 @@
+import {getNumberDate} from "../helpers.b/dates-helpers.js";
+
 window.addEventListener("DOMContentLoaded", (event) => {
+
+  function updateFlatpickrValue(input, flatpickrInput, index) {
+      if (!flatpickrInput._flatpickr) {
+        setTimeout(() => {
+          updateFlatpickrValue(input, flatpickrInput, index)
+        }, 300);
+        return;
+      }
+
+      if (flatpickrInput._flatpickr.selectedDates[index]) {
+        input.value = getNumberDate(flatpickrInput._flatpickr.selectedDates[index]);
+      } else {
+        input.value = '';
+      }
+  }
 
   function setTimepickerValues(bookForm) {
     if (!bookForm) return;
@@ -6,6 +23,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const url = window.location.href;
     const decodedUrl = decodeURIComponent(url);
     const urlSearchParams = new URLSearchParams(decodedUrl.split('?')[1]);
+
+    const flatpickr = bookForm.querySelector('.product-hero__calendar .input__field');
+
+
+    bookForm.querySelector('[name="cancel_page"]').value = window.location.href;
 
 
     let dateStart = '';
@@ -15,9 +37,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       [dateStart, timeStart] = searchStart.split(' ');
       const inputDateStart = document.querySelector('.product-hero__calendar input[name="date_start"]');
       inputDateStart.value = dateStart
-      if (!bookForm.querySelector('.product-hero__calendar').querySelector('.selected')) {
-        inputDateStart.value = '';
-      }
+
+      updateFlatpickrValue(inputDateStart, flatpickr, 0)
 
       const inputTimeStart = document.querySelector('input[name="time_start"]');
       inputTimeStart.value = timeStart;
@@ -32,9 +53,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
       [dateEnd, timeEnd] = searchEnd.split(' ');
       const inputDateEnd = document.querySelector('.product-hero__calendar input[name="date_end"]');
       inputDateEnd.value = dateEnd
-      if (!bookForm.querySelector('.product-hero__calendar').querySelector('.selected')) {
-        inputDateEnd.value = '';
-      }
+
+      updateFlatpickrValue(inputDateEnd, flatpickr, 1);
+
 
       const inputTimeEnd = document.querySelector('input[name="time_end"]');
       inputTimeEnd.value = timeEnd;

@@ -25,6 +25,23 @@ function initSelects(selectNodes) {
 
     toggleNode.addEventListener('click', handleToggle);
 
+    function selectOption(optionToSelectNode) {
+      optionNodes.forEach(optionNode => optionNode.classList.remove(CLASSES.optionActive));
+      const index = [...optionNodes].map((optionNode, index) => {
+        if (optionToSelectNode.textContent === optionNode.textContent) {
+          return index + 1;
+        };
+      })[0];
+      optionToSelectNode.classList.add(CLASSES.optionActive);
+
+      inputNode.selectedIndex = index;
+      toggleNode.classList.add(CLASSES.toggleSelected);
+      toggleNode.textContent = optionToSelectNode.textContent;
+
+      selectNode.classList.remove(CLASSES.componentActive);
+    }
+    selectNode.selectOption = selectOption;
+
 
     optionNodes.forEach((optionNode, index, arr) => {
       optionNode.addEventListener('click', () => {

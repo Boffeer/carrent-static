@@ -235,8 +235,8 @@ const inputClasses = {
   invalid: "is-invalid",
   init: "input--init",
   active: "input--active",
-  dropdown: "input--dropdown",
-  activeDropdown: "input--active-dropdown",
+  dropdown: "select",
+  activeDropdown: "select--active",
   selectedDropdown: "input--selected-dropdown",
 };
 
@@ -259,12 +259,13 @@ function initInputs(inputs) {
     const field = input.querySelector("[required]");
 
     input.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("input__field")) return;
-      if (input.classList.contains(inputClasses.activeDropdown)) {
-        deactivateInput(input);
-      } else {
-        activateInput(input);
-      }
+      if (!e.target.classList.contains("select__option") && !e.target.classList.contains("select__toggle")) return;
+
+      setTimeout(() => {
+        if (e.target.classList.contains('select__option--active')) {
+          setInputValid(input);
+        }
+      },300)
     });
 
     if (!field) return;

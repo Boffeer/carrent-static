@@ -40,7 +40,7 @@
   --bg-section-light: #fff;
   --bg-card: #fff;
   --bg-card-dark: #383838;
-  --c-error: #E5042C;
+  --c-error: #FF3b30;
   --c-success: #34C759;
 }
 
@@ -3418,6 +3418,7 @@ span.flatpickr-weekday {
 
 .select.is-invalid .select__toggle {
   --fg: var(--c-error);
+  border-color: var(--c-error);
 }
 
 .select__toggle {
@@ -3430,6 +3431,7 @@ span.flatpickr-weekday {
   line-height: var(--lh);
   text-align: left;
   background: var(--bg);
+  border: 0.1rem solid var(--bg);
   border-radius: var(--brad);
   transition: var(--tr-regular);
 }
@@ -3456,6 +3458,10 @@ span.flatpickr-weekday {
   border-color: var(--angle-color) transparent transparent transparent;
   transition: var(--tr-regular);
   transform-origin: center;
+}
+
+.select.is-invalid .select__toggle::before {
+  border-top-color: var(--c-error);
 }
 
 .select__toggle:focus {
@@ -3600,6 +3606,10 @@ span.flatpickr-weekday {
     --padding: 1.3em 1em;
     --angle-top: 1.7em;
   }
+}
+
+.select__toggle {
+  font-weight: 500;
 }
 
 .socials {
@@ -3986,6 +3996,10 @@ span.flatpickr-weekday {
 
 .input.is-invalid .input__field {
   --border-color: var(--error-color, #FF3b30);
+}
+
+.input.is-invalid .input__field::placeholder {
+  color: var(--error-color, #FF3b30);
 }
 
 .input--has-icon .input__field {

@@ -96,6 +96,10 @@
   --border-color: var(--error-color, #FF3b30);
 }
 
+.input.is-invalid .input__field::placeholder {
+  color: var(--error-color, #FF3b30);
+}
+
 .input--has-icon .input__field {
   padding-left: 3.2rem;
 }

@@ -7,58 +7,74 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const decodedUrl = decodeURIComponent(url);
     const urlSearchParams = new URLSearchParams(decodedUrl.split('?')[1]);
 
-    const searchStart = urlSearchParams.get('date_start');
-    const searchEnd = urlSearchParams.get('date_end');
-    console.log(searchStart)
-    console.log(searchEnd)
-    if (searchStart == null && searchEnd === null) return;
-
 
     let dateStart = '';
     let timeStart = '';
+    const searchStart = urlSearchParams.get('date_start');
     if (searchStart) {
       [dateStart, timeStart] = searchStart.split(' ');
+      const inputDateStart = document.querySelector('.product-hero__calendar input[name="date_start"]');
+      inputDateStart.value = dateStart
+      if (!bookForm.querySelector('.product-hero__calendar').querySelector('.selected')) {
+        inputDateStart.value = '';
+      }
+
+      const inputTimeStart = document.querySelector('input[name="time_start"]');
+      inputTimeStart.value = timeStart;
+      inputTimeStart.updateHandler()
+      changeTimepickerValue(inputTimeStart, timeStart);
     }
 
     let dateEnd = '';
     let timeEnd = '';
+    const searchEnd = urlSearchParams.get('date_end');
     if (searchEnd) {
       [dateEnd, timeEnd] = searchEnd.split(' ');
+      const inputDateEnd = document.querySelector('.product-hero__calendar input[name="date_end"]');
+      inputDateEnd.value = dateEnd
+      if (!bookForm.querySelector('.product-hero__calendar').querySelector('.selected')) {
+        inputDateEnd.value = '';
+      }
+
+      const inputTimeEnd = document.querySelector('input[name="time_end"]');
+      inputTimeEnd.value = timeEnd;
+      inputTimeEnd.updateHandler()
+      changeTimepickerValue(inputTimeEnd, timeEnd);
     }
 
-    const inputDateStart = document.querySelector('.product-hero__calendar input[name="date_start"]');
-    const inputDateEnd = document.querySelector('.product-hero__calendar input[name="date_end"]');
-    inputDateStart.value = dateStart
-    inputDateEnd.value = dateEnd
-
-    const inputTimeStart = document.querySelector('input[name="time_start"]');
-    const inputTimeEnd = document.querySelector('input[name="time_end"]');
-
-    if (!inputTimeStart || !inputTimeEnd) return;
-
-    inputTimeStart.value = timeStart;
-    inputTimeEnd.value = timeEnd;
-
-    inputTimeStart.updateHandler()
-    inputTimeEnd.updateHandler()
-
-    changeTimepickerValue();
-
-    function changeTimepickerValue() {
-      if (!inputTimeStart.inputmask && !inputTimeEnd.inputmask) {
+    function changeTimepickerValue(timepickerInput, timeValue) {
+      if (!timepickerInput.inputmask) {
         setTimeout(() => {
-          changeTimepickerValue()
+          changeTimepickerValue(timepickerInput, timeValue)
         }, 100)
         return;
       }
-      if (!inputTimeStart.inputmask.isComplete && !inputTimeEnd.inputmask.isComplete) {
+      if (!timepickerInput.inputmask.isComplete) {
         setTimeout(() => {
-          changeTimepickerValue()
+          changeTimepickerValue(timepickerInput, timeValue)
         }, 100)
         return;
       }
-      inputTimeStart.inputmask._valueSet(timeStart);
-      inputTimeEnd.inputmask._valueSet(timeEnd);
+      timepickerInput.inputmask._valueSet(timeValue);
+    }
+
+    const locationStart = urlSearchParams.get('location_start');
+    if (locationStart) {
+      const locationStartSelect = bookForm.querySelector('[name="location_start"]');
+      if (!locationStartSelect) return;
+
+      const select = locationStartSelect.closest('.select')
+      const option = [...select.querySelectorAll('option')].find(option => {
+        return option.value === locationStart
+      });
+
+      select.selectOption(option);
+    }
+
+    const flightNumber = urlSearchParams.get('flight_number');
+    if (flightNumber) {
+      const flightNumberInput = bookForm.querySelector('[name="flight_number"]');
+      flightNumberInput.value = flightNumber;
     }
   }
 
@@ -67,7 +83,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   bookForm?.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
 
-    console.log(result)
     window.location.href = result.paylink
   })
 });

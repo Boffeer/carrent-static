@@ -33,6 +33,7 @@
 
 .select.is-invalid .select__toggle {
   --fg: var(--c-error);
+  border-color: var(--c-error);
 }
 
 .select__toggle {
@@ -45,10 +46,11 @@
   line-height: var(--lh);
   text-align: left;
   background: var(--bg);
-  // border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  border: 0.1rem solid var(--bg);
   border-radius: var(--brad);
   transition: var(--tr-regular);
 }
+
 .select__toggle:focus {
   --border-color: var(--c-accent);
 }
@@ -72,6 +74,11 @@
   transition: var(--tr-regular);
   transform-origin: center;
 }
+
+.select.is-invalid .select__toggle::before {
+  border-top-color: var(--c-error);
+}
+
 .select__toggle:focus {
     border-color: var(--c-accent);
 }

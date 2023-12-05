@@ -71,8 +71,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           dateEnd.value = getNumberDate(selectedDates[1]);
           dateEnd.dispatchEvent(evt);
         }
-        console.log(dateStart.value)
-        console.log(dateEnd.value)
+        // console.log(dateStart.value)
+        // console.log(dateEnd.value)
       },
     }
     if (rangepicker.classList.contains('b_rangepicker--inline')) {

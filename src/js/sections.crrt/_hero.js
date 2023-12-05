@@ -47,7 +47,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     card.classList.add('js_created', 'car-card');
     card.dataset.id = car.id;
 
-    car.url = `${car.url}?date_start=${car.search_start}&date_end=${car.search_end}`
+    let dateStart = '';
+    if (car.search_start) {
+      dateStart = `date_start=${car.search_start}&`;
+    }
+    let dateEnd = '';
+    if (car.search_end) {
+      dateEnd = `date_end=${car.search_end}&`;
+    }
+    let locationStart = '';
+    if (car.location_start) {
+      locationStart = `location_start=${car.location_start}&`;
+    }
+    let flightNumber = '';
+    if (car.flight_number) {
+      flightNumber = `flight_number=${car.flight_number}`;
+    }
+
+    car.url = `${car.url}?${dateStart}${dateEnd}${locationStart}${flightNumber}`;
 
     let carHtml = `
         <div class="car-card__media">
@@ -133,47 +150,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     return card;
   }
 
-  /*
-  const dateStart = searchForm.querySelector('input[name="date_start"]')
-  const dateEnd = searchForm.querySelector('input[name="date_end"]')
-  const timeStart = searchForm.querySelector('input[name="time_start"]')
-  const timeEnd = searchForm.querySelector('input[name="time_end"]')
-
-  async function fetchFreeCars() {
-    const formData = new FormData();
-    formData.append('action', searchForm.dataset.action);
-    formData.append('date_start', dateStart.value);
-    formData.append('date_end', dateEnd.value);
-    formData.append('time_start', timeStart.value);
-    formData.append('time_end', timeEnd.value);
-
-    let response = await fetch(searchForm.dataset.route, {
-      method: "POST",
-      body: formData,
-    });
-
-    let result = await response.text();
-    console.log(result)
-  }
-
-  const debouncedFetchFreeCars = debounce(fetchFreeCars, 300);
-
-  dateEnd.addEventListener('input', (e) => {
-    debouncedFetchFreeCars();
-  })
-
-   */
-
-
   const carsShelf = document.querySelector('#cars .shelf__content')
   searchForm.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
-    console.log(carsShelf)
     carsShelf.innerHTML = '';
 
     result.cars.forEach(car => {
       car.search_start = result.search_start;
       car.search_end = result.search_end;
+      car.flight_number = result.flight_number;
+      car.location_start = result.location_start;
       const card = getCarCard(car);
       carsShelf.append(card)
     })
@@ -190,5 +176,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       left: 0,
       behavior: 'smooth'
     })
+
+    searchForm.querySelector('.js_form__submit').classList.remove('button--wait');
+
   })
 });

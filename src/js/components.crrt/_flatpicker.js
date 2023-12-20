@@ -92,4 +92,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const datepickerInstance = flatpickr(input, config);
   });
+
+  const datepickers = document.querySelectorAll('.b_datepicker')
+  datepickers.forEach(datepicker => {
+    if (datepicker.closest('.b_rangepicker')) return;
+    const input = datepicker.querySelector('.input__field');
+
+    let config = {
+      altInput: true,
+      altFormat: "j F Y", // "число полный месяц"
+      dateFormat: "d-m-Y", // "DD-MM-YYYY"
+      // locale: Russian,
+      time_24hr: true,
+      disableMobile: "true",
+      maxDate: new Date(new Date().setFullYear(new Date().getFullYear() - 19)),
+    }
+
+    let currentLocale = datepicker.dataset.lang;
+    if (currentLocale && currentLocale != 'en') {
+      config['locale'] = locales[currentLocale];
+    }
+
+    let defaultDate = datepicker.dataset.defaultDate;
+
+    const datepickerInstance = flatpickr(input, config);
+  })
 });

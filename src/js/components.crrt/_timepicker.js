@@ -173,6 +173,7 @@ function initSlider(slider) {
 
 const timepickers = document.querySelectorAll('.timepicker');
 timepickers.forEach(timepicker => {
+  console.log(timepicker)
   initSlider(timepicker);
 
   const timepickerValue = timepicker.querySelector('.timepicker__value');
@@ -215,3 +216,12 @@ timepickers.forEach(timepicker => {
   })
 
 });
+
+window.addEventListener('click', (e) => {
+  if (e.target.classList.contains('timepicker__control')) return;
+
+  document.querySelectorAll('.timepicker__control').forEach(control => {
+    // новый ивент тачэнд
+  })
+
+})

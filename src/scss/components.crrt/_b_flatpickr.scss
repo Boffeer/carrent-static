@@ -13,15 +13,13 @@
 .flatpickr-calendar .flatpickr-current-month {
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-top: 0;
 }
 
 
 .flatpickr-calendar .numInputWrapper {
-  display: none;
-}
-
-.flatpickr-calendar .flatpickr-current-month {
-  padding-top: 0;
+  //display: none;
 }
 
 .flatpickr-months .flatpickr-prev-month.flatpickr-next-month,
@@ -162,6 +160,21 @@
   border: none;
   border-radius: 0;
   box-shadow: none;
+}
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25%, 75% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+.is-invalid.b_rangepicker--inline {
+  animation: shake 0.5s ease-in-out;
+  color: var(--c-error);
 }
 
 /*

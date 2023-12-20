@@ -16,7 +16,7 @@ export function getDatesRange(startDateString, endDateString, returnType = 'arra
 
   // Проверяем, что введены корректные даты
   if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-    return "Некорректные даты";
+    return ["Некорректные даты"];
   }
 
   // Создаем массив для хранения результатов
@@ -59,3 +59,31 @@ export function getNumberDate(date, separator = '-') {
   // Возвращаем отформатированную строку
   return `${day}${separator}${month}${separator}${year}`
 }
+
+/*
+  @prop rentprogDate = DD-MM-YYYY
+ */
+export function rentprogDateToTimestamp(rentprogDate) {
+  const parts = rentprogDate.split('-');
+
+  // Проверяем, что строка соответствует формату ДД-ММ-ГГГГ
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Месяцы в JavaScript начинаются с 0
+    const year = parseInt(parts[2], 10);
+
+    // Создаем объект Date и получаем временную метку
+    const timestamp = new Date(year, month, day).getTime();
+
+    // Проверяем, что дата была корректной
+    if (!isNaN(timestamp)) {
+      return timestamp;
+    }
+  }
+
+  // Возвращаем null, если строка не соответствует формату
+  return null;
+
+}
+
+

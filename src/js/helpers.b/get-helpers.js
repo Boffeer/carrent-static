@@ -188,3 +188,29 @@ export function getGradientFromImageSrc(imageSrc) {
       img.src = imageSrc;
     });
   }
+
+
+export function getMaxDaysFromString(str) {
+  // Регулярное выражение для извлечения чисел из строки
+  const numberRegex = /\d+/g;
+
+  // Извлекаем все числа из строки
+  const matches = str.match(numberRegex);
+
+  if (matches) {
+    // Преобразуем найденные числа в массив чисел
+    const numbers = matches.map(match => parseInt(match, 10));
+
+    // Если есть более одного числа, возвращаем максимальное значение
+    if (numbers.length > 1) {
+      return [Math.min(...numbers), Math.max(...numbers)];
+    }
+
+    // Если есть только одно число, возвращаем его
+    return numbers[0];
+  }
+
+  // Если числа не найдены, возвращаем null или другое значение по умолчанию
+  return null;
+}
+

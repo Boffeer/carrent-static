@@ -1,4 +1,5 @@
-import {getNumberDate} from "../helpers.b/dates-helpers.js";
+import {getNumberDate, getDatesRange} from "../helpers.b/dates-helpers.js";
+import {getMaxDaysFromString} from "../helpers.b/get-helpers.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
 
@@ -106,4 +107,104 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     window.location.href = result.paylink
   })
+
+  const DATE_EMPTY = 'NaN-NaN-NaN';
+  const dateStart = document.querySelector('.product-hero__bookform input[name="date_start"]');
+  const dateEnd = document.querySelector('.product-hero__bookform input[name="date_end"]');
+  const timeStart = document.querySelector('.product-hero__bookform input[name="time_start"]');
+  const timeEnd = document.querySelector('.product-hero__bookform input[name="time_end"]');
+
+  function countSelectedDates() {
+    if (dateEnd === DATE_EMPTY) return;
+    const start = `${dateStart.value} ${timeStart.value}`
+    const end = `${dateEnd.value} ${timeEnd.value}`
+    const days = getDatesRange(start, end)
+    if (typeof days[0] === 'string') return 0;
+    return days.length - 2
+  }
+
+  function isNumberInRange(number, a, b) {
+    return number >= a && number <= b;
+  }
+
+  function getTotalPrice() {
+    const selectedDaysCount = countSelectedDates() || 1;
+    let totalPrice = 0;
+
+    const options = document.querySelectorAll('.product-hero__bookform input[name="options"]');
+    options.forEach(option => {
+      option = option.closest('.checkbox');
+      let pills = [...option.querySelectorAll('.checkbox__pill')];
+      pills = pills.filter(pill => {
+        pill.classList.add('is-opaque')
+        const daysIn = getMaxDaysFromString(pill.dataset.range)
+        if (typeof daysIn === 'number') {
+          return selectedDaysCount > daysIn;
+        } else {
+          return isNumberInRange(selectedDaysCount, ...daysIn) || selectedDaysCount >= daysIn[1];
+        }
+      })
+      let currentOption;
+      if (pills.length === 0) {
+        currentOption = option.querySelector('.checkbox__pill')
+
+      } else {
+        currentOption = pills[pills.length - 1]
+      }
+      currentOption.classList.remove('is-opaque');
+      const input = option.querySelector('input');
+      if (input.checked) {
+        const currentOptionPrice = currentOption.querySelector('.checkbox__pill-head span').innerText
+        totalPrice += +currentOptionPrice
+      }
+
+    })
+
+    let rates = [...document.querySelectorAll('.product-hero__bookform-tariff')]
+    rates = rates.filter(rate => {
+      rate.classList.add('is-opaque')
+      const daysIn = getMaxDaysFromString(rate.dataset.range)
+      if (typeof daysIn === 'number') {
+        return selectedDaysCount > daysIn;
+      } else {
+        return isNumberInRange(selectedDaysCount, ...daysIn) || selectedDaysCount >= daysIn[1];
+      }
+    });
+    let currentRate
+    if (rates.length === 0) {
+      currentRate = document.querySelector('.product-hero__bookform-tariff')
+    } else {
+      currentRate = rates[rates.length - 1];
+    }
+    currentRate.classList.remove('is-opaque');
+    const currentRatePrice = currentRate.querySelector('.product-hero__bookform-tariff-price span').innerText
+    totalPrice+= +currentRatePrice
+
+    return totalPrice * selectedDaysCount
+  }
+
+  function setBookButtonPrice() {
+    const button = document.querySelector('.product-hero__bookform-submit')
+    if (!button.dataset.initialText) {
+      button.dataset.initialText = button.innerText;
+    }
+
+    const totalPrice = getTotalPrice()
+
+    button.innerText = `${button.dataset.initialText} (${totalPrice}${button.dataset.currency})`
+  }
+
+  dateEnd.addEventListener('input', () => {
+    setBookButtonPrice()
+  });
+
+  const options = document.querySelectorAll('.product-hero__bookform input[name="options"]');
+  options.forEach(option => {
+    option.addEventListener('input', () => {
+      setBookButtonPrice()
+    })
+  })
+
+  setBookButtonPrice();
+
 });

@@ -271,7 +271,7 @@
 	padding-bottom: 3.4em;
 	background-color: var(--bg-card);
 	border-radius: 2em;
-	overflow: hidden;
+	//overflow: hidden;
 
 	@media (max-width: $tablet) {
 		padding: 1.7em 1em;
@@ -287,8 +287,23 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 1em;
+  margin-bottom: 2em;
 }
 
+
+.product-hero__group-title {
+  color: #444;
+  font-size: 2.5em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 30px */
+  margin-bottom: 0.42em;
+
+  @media (max-width: $tablet) {
+    font-size: 1.8em;
+    margin-bottom: 0.55em;
+  }
+}
 .product-hero__bookform-tariffs-title {
 	color: #444;
 	font-size: 2.5em;
@@ -351,12 +366,12 @@
 }
 
 .product-hero__bookform-submit {
-	grid-column: span 2;
+	//grid-column: span 2;
   width: 100%;
 }
 
 .product-hero__bookform-caption {
-	padding-top: 0.7em;
+	padding-top: 1em;
 	color: #444;
 	text-align: center;
 	font-size: 1.6em;
@@ -445,4 +460,11 @@ html[lang="pt-PT"] .product-hero__stat-list {
 
 .product-hero__bookform-head {
   margin-bottom: 0;
+}
+
+
+.product-hero__group {
+  margin-bottom: 2em;
+  display: grid;
+  row-gap: 1em;
 }

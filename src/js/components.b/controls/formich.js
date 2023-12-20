@@ -26,10 +26,22 @@ function serealizeForm(formNode) {
   const selects = [...formNode.querySelectorAll('select')];
   const textareas = [...formNode.querySelectorAll('textarea')];
 
-  const formData = {};
+  let formData = {};
    // Обработка полей input
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
+    if (input.name === '') continue;
+
+    if (input.type === 'checkbox') {
+      if (!Array.isArray(formData[input.name])) {
+        formData[input.name] = [];
+      }
+      if (!input.checked) continue;
+
+      formData[input.name].push(input.value)
+      continue;
+    }
+
     formData[input.name] = input.value;
   }
 
@@ -44,6 +56,18 @@ function serealizeForm(formNode) {
     const textarea = textareas[i];
     formData[textarea.name] = textarea.value;
   }
+
+  /*
+  for (const key in formData) {
+    if (Object.prototype.hasOwnProperty.call(formData, key)) {
+      // Проверяем, является ли значение свойства массивом
+      if (Array.isArray(formData[key])) {
+        // Преобразуем массив в JSON-строку и присваиваем свойству
+        formData[key] = JSON.stringify(formData[key]);
+      }
+    }
+  }
+   */
 
   return formData;
 

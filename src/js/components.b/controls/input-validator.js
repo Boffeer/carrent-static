@@ -75,11 +75,21 @@ export function validateInput(input) {
     return validatePhone(input);
   } else if (field.type == "email") {
     return validateEmail(input);
+  } else if (field.type == "checkbox") {
+    return validateCheckbox(input)
   } else {
     return validateInputLength(input);
   }
 }
 
+export function validateCheckbox(input) {
+  const field = input.querySelector("[required]");
+  if (field.checked) {
+    return setInputValid(input);
+  } else {
+    return setInputInvalid(input);
+  }
+}
 export function validateInputLength(input) {
   // return
   const field = input.querySelector("[required]");

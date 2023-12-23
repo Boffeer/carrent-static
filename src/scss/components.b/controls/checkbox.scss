@@ -160,3 +160,10 @@ checkbox.html
 .checkbox__pill-body {
   color: var(--fg-third);
 }
+
+.is-invalid.checkbox {
+  --border-color-check: var(--c-error);
+}
+.is-invalid .checkbox__content {
+  color: var(--c-error);
+}

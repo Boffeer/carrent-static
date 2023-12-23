@@ -5537,6 +5537,14 @@ checkbox.html
   color: var(--fg-third);
 }
 
+.is-invalid.checkbox {
+  --border-color-check: var(--c-error);
+}
+
+.is-invalid .checkbox__content {
+  color: var(--c-error);
+}
+
 .checkbox {
   --size-check: 2.4rem;
   --border-width-check: 0.1rem;
@@ -6830,13 +6838,12 @@ body:not(._lock) .header--hidden {
 
 .product-hero__bookform-submit {
   width: 100%;
+  margin-bottom: 2em;
 }
 
 .product-hero__bookform-caption {
-  padding-top: 1em;
   color: #444;
-  text-align: center;
-  font-size: 1.6em;
+  font-size: 0.6em;
   font-style: normal;
   font-weight: 300;
   line-height: 120%; /* 19.2px */

@@ -105,7 +105,14 @@ formsList.forEach((form) => {
       validateInput(input);
     });
 
-    if (form.querySelector('.is-invalid')) return;
+    if (form.querySelector('.is-invalid')) {
+      window.scroll({
+        top: form.querySelector('.is-invalid').getBoundingClientRect().top + pageYOffset,
+        left: 0,
+        behavior: 'smooth'
+      })
+      return;
+    }
 
 
     extractUTM(form);

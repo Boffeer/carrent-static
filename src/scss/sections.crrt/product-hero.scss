@@ -67,7 +67,7 @@
 	}
 
 	@media (max-width: $mobile) {
-		height: 18.5em;
+		height: initial;
 	}
 }
 
@@ -83,6 +83,8 @@
 	display: block;
 	height: 100%;
 	width: 100%;
+  padding-top: 100%;
+  position: relative;
 }
 
 .product-hero__img {
@@ -90,7 +92,10 @@
 	height: 100%;
 	width: 100%;
   object-fit: cover;
-  object-position: top;
+  position: absolute;
+  top: 0;
+  left: 0;
+  //object-position: top;
 }
 
 .product-hero__thumbs {
@@ -467,3 +472,9 @@ html[lang="pt-PT"] .product-hero__stat-list {
   display: grid;
   row-gap: 1em;
 }
+
+.product-hero__thumbs-button-next.swiper-button-disabled,
+.product-hero__thumbs-button-prev.swiper-button-disabled {
+  opacity: 0;
+}
+

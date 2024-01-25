@@ -3,6 +3,9 @@ import {getMaxDaysFromString} from "../helpers.b/get-helpers.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
 
+  const productHero = document.querySelector('.product-hero');
+  if (!productHero) return;
+
   function updateFlatpickrValue(input, flatpickrInput, index) {
       if (!flatpickrInput._flatpickr) {
         setTimeout(() => {
@@ -194,9 +197,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     button.innerText = `${button.dataset.initialText} (${totalPrice}${button.dataset.currency})`
   }
 
-  dateEnd.addEventListener('input', () => {
-    setBookButtonPrice()
-  });
+  if (dateEnd) {
+    dateEnd.addEventListener('input', () => {
+      setBookButtonPrice()
+    });
+  }
 
   const options = document.querySelectorAll('.product-hero__bookform input[name="options"]');
   options.forEach(option => {

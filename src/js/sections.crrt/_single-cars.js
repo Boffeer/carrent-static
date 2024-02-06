@@ -103,113 +103,123 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
+  const DATE_EMPTY = 'NaN-NaN-NaN';
   const bookForm = document.querySelector('.product-hero__bookform')
   setTimepickerValues(bookForm)
+
   bookForm?.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
 
-    window.location.href = result.paylink
+    // window.location.href = result.paylink
   })
 
-  const DATE_EMPTY = 'NaN-NaN-NaN';
-  const dateStart = document.querySelector('.product-hero__bookform input[name="date_start"]');
-  const dateEnd = document.querySelector('.product-hero__bookform input[name="date_end"]');
-  const timeStart = document.querySelector('.product-hero__bookform input[name="time_start"]');
-  const timeEnd = document.querySelector('.product-hero__bookform input[name="time_end"]');
+  async function fetchOrder(bookForm) {
+    const formData = bookForm._formich.getFormData();
 
-  function countSelectedDates() {
-    if (dateEnd === DATE_EMPTY) return;
-    const start = `${dateStart.value} ${timeStart.value}`
-    const end = `${dateEnd.value} ${timeEnd.value}`
-    const days = getDatesRange(start, end)
-    if (typeof days[0] === 'string') return 0;
-    return days.length - 2
+    if (formData.get('date_end') === '') return false;
+    if (formData.get('date_end') === DATE_EMPTY) return false;
+
+    if (bookForm.dataset.action) {
+      formData.append('action', bookForm.dataset.action);
+    }
+
+    let response = await fetch(bookForm.dataset.route, {
+      method: "POST",
+      body: formData,
+    });
+
+    let result = await response.text();
+
+    return JSON.parse(result);
   }
 
-  function isNumberInRange(number, a, b) {
-    return number >= a && number <= b;
-  }
-
-  function getTotalPrice() {
-    const selectedDaysCount = countSelectedDates() || 1;
-    let totalPrice = 0;
+  async function updateOrderTotal(bookForm) {
+    bookForm.classList.add('product-hero__bookform--loading');
+    const order = await fetchOrder(bookForm);
+    if (!order) {
+      bookForm.classList.remove('product-hero__bookform--loading');
+      return false;
+    }
 
     const options = document.querySelectorAll('.product-hero__bookform input[name="options"]');
     options.forEach(option => {
       option = option.closest('.checkbox');
       let pills = [...option.querySelectorAll('.checkbox__pill')];
-      pills = pills.filter(pill => {
-        pill.classList.add('is-opaque')
-        const daysIn = getMaxDaysFromString(pill.dataset.range)
-        if (typeof daysIn === 'number') {
-          return selectedDaysCount > daysIn;
-        } else {
-          return isNumberInRange(selectedDaysCount, ...daysIn) || selectedDaysCount >= daysIn[1];
+      pills.forEach((pill, pillIndex) => {
+        pill.classList.add('is-opaque');
+        if (pillIndex === order.total.price_index) {
+          pill.classList.remove('is-opaque');
         }
       })
-      let currentOption;
-      if (pills.length === 0) {
-        currentOption = option.querySelector('.checkbox__pill')
-
-      } else {
-        currentOption = pills[pills.length - 1]
-      }
-      currentOption.classList.remove('is-opaque');
-      const input = option.querySelector('input');
-      if (input.checked) {
-        const currentOptionPrice = currentOption.querySelector('.checkbox__pill-head span').innerText
-        totalPrice += +currentOptionPrice
-      }
-
     })
 
-    let rates = [...document.querySelectorAll('.product-hero__bookform-tariff')]
-    rates = rates.filter(rate => {
-      rate.classList.add('is-opaque')
-      const daysIn = getMaxDaysFromString(rate.dataset.range)
-      if (typeof daysIn === 'number') {
-        return selectedDaysCount > daysIn;
-      } else {
-        return isNumberInRange(selectedDaysCount, ...daysIn) || selectedDaysCount >= daysIn[1];
+    const tariffs = document.querySelectorAll('.product-hero__bookform-tariff')
+    tariffs.forEach((tariff, tariffIndex) => {
+      tariff.classList.add('is-opaque');
+      if (tariffIndex === order.total.price_index) {
+        tariff.classList.remove('is-opaque');
       }
-    });
-    let currentRate
-    if (rates.length === 0) {
-      currentRate = document.querySelector('.product-hero__bookform-tariff')
-    } else {
-      currentRate = rates[rates.length - 1];
-    }
-    currentRate.classList.remove('is-opaque');
-    const currentRatePrice = currentRate.querySelector('.product-hero__bookform-tariff-price span').innerText
-    totalPrice+= +currentRatePrice
-
-    return totalPrice * selectedDaysCount
-  }
-
-  function setBookButtonPrice() {
-    const button = document.querySelector('.product-hero__bookform-submit')
-    if (!button.dataset.initialText) {
-      button.dataset.initialText = button.innerText;
-    }
-
-    const totalPrice = getTotalPrice()
-
-    button.innerText = `${button.dataset.initialText} (${totalPrice}${button.dataset.currency})`
-  }
-
-  if (dateEnd) {
-    dateEnd.addEventListener('input', () => {
-      setBookButtonPrice()
-    });
-  }
-
-  const options = document.querySelectorAll('.product-hero__bookform input[name="options"]');
-  options.forEach(option => {
-    option.addEventListener('input', () => {
-      setBookButtonPrice()
     })
-  })
 
-  setBookButtonPrice();
+    let totalMessageText = `<span class="text-bold">${order.total.price}${order.total.currency}</span>, ${order.total.full_days_text}`
+    if (order.total.extra_hours_text) {
+      totalMessageText += `, ${order.total.extra_hours_text}`;
+    }
+    const submitButton = document.querySelector('.product-hero__bookform-submit')
+    submitButton.innerHTML = `${submitButton.dataset.textInitial } |&nbsp;${totalMessageText}`;
 
+    bookForm.classList.remove('product-hero__bookform--loading');
+  }
+
+  if (bookForm) {
+    function hideValidityMessage() {
+      const message = bookForm.querySelector('.product-hero__bookform-validity-message');
+      message.classList.add('is-hidden')
+    }
+    function showValidityMessage() {
+      const message = bookForm.querySelector('.product-hero__bookform-validity-message');
+      message.classList.remove('is-hidden')
+    }
+
+    let inputsToCallTotalUpdate = [
+      'date_end',
+      'time_start',
+      'time_end',
+      'options'
+    ];
+    let inputsToCallValidate = bookForm.querySelectorAll('input[required]')
+    inputsToCallValidate = [
+      ...inputsToCallValidate,
+      bookForm.querySelector('input[name="date_end"]'),
+      bookForm.querySelector('input[name="time_start"]'),
+      bookForm.querySelector('input[name="time_end"]'),
+      ...bookForm.querySelectorAll('input[name="options"]'),
+    ];
+    inputsToCallValidate.forEach(input => {
+      input.addEventListener('input', async (e) => {
+        if (input.name === '') return;
+        if (input.value === '') return;
+        if (input.value === DATE_EMPTY) return;
+
+        let isValid = bookForm._formich.checkValidity(false);
+
+        if (inputsToCallTotalUpdate.includes(input.name)) {
+          await updateOrderTotal(bookForm);
+        }
+
+        if (isValid) {
+          bookForm._formich.enableSubmit(hideValidityMessage)
+        } else {
+          bookForm._formich.disableSubmit(showValidityMessage)
+        }
+      })
+
+      input.addEventListener('change', async (e) => {
+        // if (!inputsToCallTotalUpdate.includes(input.name)) return;
+        // await updateOrderTotal(bookForm);
+      })
+
+    });
+    bookForm._formich.disableSubmit();
+  }
 });

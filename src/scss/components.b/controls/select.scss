@@ -31,7 +31,7 @@
   transform: scale(0);
 }
 
-.select.is-invalid .select__toggle {
+.select.is-invalid--highlighted .select__toggle {
   --fg: var(--c-error);
   border-color: var(--c-error);
 }
@@ -75,7 +75,7 @@
   transform-origin: center;
 }
 
-.select.is-invalid .select__toggle::before {
+.select.is-invalid--highlighted .select__toggle::before {
   border-top-color: var(--c-error);
 }
 

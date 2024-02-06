@@ -160,6 +160,7 @@ function initSlider(slider) {
     if (dragging) {
       dragging = false;
       document.removeEventListener('mousemove', handleSliderMove);
+      timepickerInput.dispatchEvent(new Event('input'));
     }
   });
 
@@ -167,13 +168,14 @@ function initSlider(slider) {
     if (dragging) {
       dragging = false;
       document.removeEventListener('touchmove', handleSliderMove);
+      timepickerInput.dispatchEvent(new Event('input'));
     }
   });
 }
 
 const timepickers = document.querySelectorAll('.timepicker');
 timepickers.forEach(timepicker => {
-  console.log(timepicker)
+  // console.log(timepicker)
   initSlider(timepicker);
 
   const timepickerValue = timepicker.querySelector('.timepicker__value');
@@ -201,7 +203,8 @@ timepickers.forEach(timepicker => {
 
   timepickerValue.addEventListener('input', (e) => {
     e.stopPropagation();
-    let value = e.target.value;
+    // let value = e.target.value;
+    let value = timepickerValue.value;
 
     let [currentHours, currentMinutes] = value.split(':').map(val=> val)
     if (value.includes('_')) return;

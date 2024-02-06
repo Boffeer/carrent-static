@@ -25,7 +25,7 @@
   }
 }
 
-.textarea.is-invalid:not(.input--focused) {
+.textarea.is-invalid--highlighted:not(.input--focused) {
   --c-placeholder: var(--c-error);
   --fg-color: var(--c-error);
 }

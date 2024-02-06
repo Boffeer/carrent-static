@@ -94,26 +94,51 @@ formsList.forEach((form) => {
     })
   }
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
+  form._formich = {};
+  form._formich.serealize = () => serealizeForm(form);
+  form._formich.getFormData = () => getFormData(serealizeForm(form));
+  form._formich.checkValidity = (highlightInvalid = true) => {
     const inputsToValidate = [
       ...form.querySelectorAll('.js_form__control')
     ];
 
     inputsToValidate.forEach((input) => {
-      validateInput(input);
+      validateInput(input, highlightInvalid);
     });
 
     if (form.querySelector('.is-invalid')) {
+      if (highlightInvalid !== true) return false;
       window.scroll({
         top: form.querySelector('.is-invalid').getBoundingClientRect().top + pageYOffset,
         left: 0,
         behavior: 'smooth'
       })
-      return;
+      return false;
     }
 
+    return true;
+  }
+  form._formich.disableSubmit = (callback = () => {}) => {
+    const submitButton = form.querySelector('.js_form__submit');
+    submitButton.classList.add('button--wait');
+
+    if (typeof callback === 'function') {
+      callback()
+    }
+  }
+  form._formich.enableSubmit = (callback = () => {}) => {
+    const submitButton = form.querySelector('.js_form__submit');
+    submitButton.classList.remove('button--wait');
+
+    if (typeof callback === 'function') {
+      callback()
+    }
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form._formich.checkValidity(true)) return;
 
     extractUTM(form);
 
@@ -129,9 +154,8 @@ formsList.forEach((form) => {
       body: formData,
     });
 
-    const submitButton = form.querySelector('.js_form__submit');
     if (!form.classList.contains('js_form--no-lock-button')) {
-      submitButton.classList.add('button--wait');
+      form._formich.disableSubmit();
     }
 
     try {
@@ -177,7 +201,7 @@ formsList.forEach((form) => {
 
       if (!form.classList.contains('js_form--no-lock-button')) {
         setTimeout(() => {
-          submitButton.classList.remove('button--wait');
+          form._formich.enableSubmit();
           buttonTextElement.innerText = buttonText;
         }, 5000)
       }

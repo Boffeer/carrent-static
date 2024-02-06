@@ -87,16 +87,16 @@
   -webkit-box-shadow: var(--box-shadow);
 }
 
-.input.is-invalid {
+.input.is-invalid--highlighted {
   --border-color: var(--error-color, #FF3b30);
   --fg: var(--error-color, #FF3b30);
   --fg-placeholder: var(--error-color, #FF3b30);
 }
-.input.is-invalid .input__field {
+.input.is-invalid--highlighted .input__field {
   --border-color: var(--error-color, #FF3b30);
 }
 
-.input.is-invalid .input__field::placeholder {
+.input.is-invalid--highlighted .input__field::placeholder {
   color: var(--error-color, #FF3b30);
 }
 
@@ -119,7 +119,7 @@
   opacity: 0;
   max-height: 1em;
 }
-.is-invalid .input__error {
+.is-invalid--highlighted .input__error {
   margin-top: 0;
   opacity: 1;
   max-height: 10rem;

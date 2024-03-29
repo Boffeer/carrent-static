@@ -92,8 +92,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       const option = [...select.querySelectorAll('option')].find(option => {
         return option.value === locationStart
       });
-
       select.selectOption(option);
+      select.querySelector('select').value = locationStart;
     }
 
     const flightNumber = urlSearchParams.get('flight_number');
@@ -110,8 +110,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
   bookForm?.addEventListener('submit-success', (e) => {
     const result = JSON.parse(e.detail.result);
 
-    // window.location.href = result.paylink
+    window.location.href = result.paylink
   })
+
+  updateOrderTotal(bookForm);
+
+
 
   async function fetchOrder(bookForm) {
     const formData = bookForm._formich.getFormData();
@@ -120,7 +124,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (formData.get('date_end') === DATE_EMPTY) return false;
 
     if (bookForm.dataset.action) {
-      formData.append('action', bookForm.dataset.action);
+      formData.append('action', 'get_order_total');
     }
 
     let response = await fetch(bookForm.dataset.route, {
@@ -167,6 +171,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
     const submitButton = document.querySelector('.product-hero__bookform-submit')
     submitButton.innerHTML = `${submitButton.dataset.textInitial } |&nbsp;${totalMessageText}`;
+    submitButton.dataset.paylink = order.paylink;
 
     bookForm.classList.remove('product-hero__bookform--loading');
   }

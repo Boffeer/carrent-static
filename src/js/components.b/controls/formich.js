@@ -159,14 +159,9 @@ formsList.forEach((form) => {
     }
 
     try {
-      // let result = await response.json();
       let result = await response.text();
-      // console.log(result)
 
-      // if (result.status) {
-      //   console.error(result.status);
-      // }
-
+      const submitButton = form.querySelector('.js_form__submit');
       let buttonText;
       let buttonTextElement;
       let submitButtonText = submitButton.querySelector('.button__text');

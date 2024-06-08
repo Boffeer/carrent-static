@@ -74,6 +74,7 @@ body:not(._lock) .header--hidden {
 
   @media (max-width: $tablet) {
     margin-right: 3rem;
+    font-size: 1.2em;
   }
 
   @media (max-width: $mobile) {
@@ -204,4 +205,12 @@ body:not(._lock) .header--hidden {
   --line-height: 0.2em;
   --line-offset: 0.7rem;
   --c-burger-line: var(--c-secondary);
+}
+
+.header__languages {
+  z-index: 3;
+  font-size: 1.2em;
+  @media (min-width: $tablet + 1) {
+    display: none;
+  }
 }

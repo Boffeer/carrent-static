@@ -47,4 +47,10 @@ window.media = {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('a[href="#languages"]').forEach(lang => {
+    lang.addEventListener('click', e => {
+      console.log(lang)
+      e.preventDefault();
+    })
+  })
 });

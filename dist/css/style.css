@@ -3798,6 +3798,10 @@ span.flatpickr-weekday {
   }
 }
 
+.header__languages .menu__nav-item--has-children .menu__nav-link:not(:last-child) {
+  margin-bottom: 0.8em;
+}
+
 @media (min-width: 992px) {
   .menu__nav-item--has-children::after {
     content: "";
@@ -3813,6 +3817,21 @@ span.flatpickr-weekday {
     background-size: contain;
     transition: all 0.4s var(--tr-jolly-enter);
   }
+}
+
+.header__languages .menu__nav-item--has-children::after {
+  content: "";
+  position: absolute;
+  top: 0.7em;
+  right: 0.6em;
+  display: block;
+  width: 1.6em;
+  height: 1.2em;
+  background-image: url("../img/common.crrt/triangle-bottom.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: all 0.4s var(--tr-jolly-enter);
 }
 
 .menu__nav-item--has-children:hover::after {
@@ -3842,6 +3861,17 @@ span.flatpickr-weekday {
   }
 }
 
+.header__languages .menu__nav-dropdown {
+  position: absolute;
+  left: 0;
+  transform: translateY(2em);
+  opacity: 0;
+  pointer-events: none;
+  margin-top: 0;
+  padding-left: 0;
+  padding-top: 1em;
+}
+
 .menu__nav-dropdown-content {
   position: relative;
   background: var(--bg-card);
@@ -3855,6 +3885,12 @@ span.flatpickr-weekday {
     padding-top: 0;
     padding-bottom: 0;
   }
+}
+
+.header__languages .menu__nav-dropdown-content {
+  background: var(--bg-app);
+  padding: 2em;
+  padding-top: 1em;
 }
 
 .menu__nav-dropdown-content::before {
@@ -3875,6 +3911,11 @@ span.flatpickr-weekday {
   .menu__nav-dropdown-content::before {
     content: none;
   }
+}
+
+.header__languages .menu__nav-dropdown-content::before {
+  content: "";
+  border-bottom-color: var(--bg-app);
 }
 
 .menu__nav-item--has-children:hover .menu__nav-dropdown {
@@ -5608,6 +5649,11 @@ checkbox.html
     display: none;
   }
 }
+@media (max-width: 991px) {
+  .burger {
+    margin-left: 1rem;
+  }
+}
 
 .burger__line {
   position: absolute;
@@ -5726,6 +5772,7 @@ body:not(._lock) .header--hidden {
 @media (max-width: 991px) {
   .header__logo {
     margin-right: 3rem;
+    font-size: 1.2em;
   }
 }
 @media (max-width: 575px) {
@@ -5855,6 +5902,16 @@ body:not(._lock) .header--hidden {
   --line-height: 0.2em;
   --line-offset: 0.7rem;
   --c-burger-line: var(--c-secondary);
+}
+
+.header__languages {
+  z-index: 3;
+  font-size: 1.2em;
+}
+@media (min-width: 992px) {
+  .header__languages {
+    display: none;
+  }
 }
 
 .hero {

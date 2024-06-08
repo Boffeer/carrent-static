@@ -22,6 +22,9 @@
   @media (min-width: $has-burger + 1) {
     display: none;
   }
+  @media (max-width: $tablet) {
+    margin-left: 1rem;
+  }
 }
 
 .burger__line {
